@@ -16,16 +16,18 @@
             theme: {
                 extend: {
                     colors: {
-                        'neon-green': '#00ff88',
-                        'electric-blue': '#00d4ff',
-                        'success-green': '#10b981',
-                        'deep-blue': '#1e40af',
-                        'accent-purple': '#8b5cf6',
-                        'dark-bg': '#0a0a0a',
-                        'card-bg': '#1a1a1a',
-                        'glass-bg': 'rgba(26, 26, 26, 0.8)',
-                        'border-gray': '#333333',
-                        'border-light': '#404040'
+                        'primary': '#3b82f6',
+                        'primary-dark': '#2563eb',
+                        'secondary': '#10b981',
+                        'secondary-dark': '#059669',
+                        'accent': '#6366f1',
+                        'accent-dark': '#4f46e5',
+                        'dark-bg': '#0f172a',
+                        'card-bg': '#1e293b',
+                        'glass-bg': 'rgba(30, 41, 59, 0.8)',
+                        'border-gray': '#334155',
+                        'border-light': '#475569',
+                        'text-muted': '#94a3b8'
                     }
                 }
             }
@@ -35,17 +37,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; line-height: 1.6; }
         .gradient-text { 
-            background: linear-gradient(135deg, #00ff88, #00d4ff, #8b5cf6); 
+            background: linear-gradient(135deg, #3b82f6, #10b981, #6366f1); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .neon-glow { box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.1); }
-        .electric-glow { box-shadow: 0 0 30px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.1); }
+        .primary-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2), 0 0 40px rgba(59, 130, 246, 0.1); }
+        .secondary-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), 0 0 40px rgba(16, 185, 129, 0.1); }
         .glass-morphism { 
-            background: rgba(26, 26, 26, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(71, 85, 105, 0.3);
         }
         .hover-lift { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
@@ -74,6 +76,109 @@
             z-index: 9999;
             transition: width 0.1s ease;
         }
+        
+        /* Pulse animation for live elements */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .pulse-animation { animation: pulse-glow 2s infinite; }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        
+        /* Purchase notification styles */
+        .purchase-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 16px 24px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            z-index: 1000;
+            transform: translateX(-400px);
+            transition: transform 0.5s ease;
+        }
+        .purchase-notification.show { transform: translateX(0); }
+        
+        /* Countdown timer */
+        .countdown-timer {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .countdown-unit {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .countdown-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .countdown-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+        }
+        
+        /* Trust badges */
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+        }
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            cursor: pointer;
+        }
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 136, 0.2);
+            border: 3px solid #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(0, 255, 136, 0.3);
+        }
+        
         @media (max-width: 768px) {
             .glass-morphism { backdrop-filter: blur(10px); }
             .hover-lift:hover { transform: translateY(-4px); }
@@ -83,6 +188,11 @@
                 right: 1rem; 
                 bottom: 5rem;
                 height: 70vh;
+            }
+            .purchase-notification {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
             }
         }
     </style>
@@ -96,9 +206,9 @@
                     CoinTrader AI
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#demo" class="hover:text-primary-gold transition-colors scroll-indicator">Demo</a>
-                    <a href="#buy-now" class="hover:text-electric-blue transition-colors scroll-indicator">Get Started</a>
-                    <a href="#faq" class="hover:text-neon-green transition-colors scroll-indicator">FAQ</a>
+                    <a href="#demo" class="hover:text-primary transition-colors scroll-indicator">Demo</a>
+                    <a href="#buy-now" class="hover:text-primary transition-colors scroll-indicator">Get Started</a>
+                    <a href="#faq" class="hover:text-secondary transition-colors scroll-indicator">FAQ</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -109,7 +219,7 @@
                         <div class="w-6 h-0.5 bg-white transition-transform"></div>
                     </div>
                 </button>
-                <a href="#buy-now" class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform duration-300">
+                <a href="#buy-now" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform duration-300">
                     Get Started
                 </a>
             </div>
@@ -118,20 +228,44 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-dark-bg border-t border-border-light">
             <div class="px-4 py-4 space-y-4">
-                <a href="#demo" class="block text-white hover:text-electric-blue transition-colors">Demo</a>
-                <a href="#buy-now" class="block text-white hover:text-electric-blue transition-colors">Get Started</a>
-                <a href="#faq" class="block text-white hover:text-neon-green transition-colors">FAQ</a>
+                <a href="#demo" class="block text-white hover:text-primary transition-colors">Demo</a>
+                <a href="#buy-now" class="block text-white hover:text-primary transition-colors">Get Started</a>
+                <a href="#faq" class="block text-white hover:text-secondary transition-colors">FAQ</a>
             </div>
         </div>
     </nav>
+    
+    <!-- Trust Indicators Bar -->
+    <div class="bg-black border-b border-gray-800 py-3">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-400">
+                <div class="trust-badge">
+                    <span class="text-secondary">✓</span>
+                    <span>SSL Secured</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="text-primary">✓</span>
+                    <span>30-Day Money Back</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="text-amber-400">✓</span>
+                    <span>24/7 Support</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="text-accent">✓</span>
+                    <span>1,247+ Happy Customers</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex flex-col justify-center px-4 py-16 pt-32 bg-gradient-to-br from-dark-bg via-gray-900 to-dark-bg">
         <div class="max-w-6xl mx-auto text-center">
             <div class="mb-8">
                 <div class="inline-flex items-center px-6 py-3 glass-morphism rounded-full mb-8 hover-lift">
-                    <span class="w-3 h-3 bg-primary-gold rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-neon-green text-sm font-semibold tracking-wide">🔴 LIVE: 847 Active Traders • $2.3M Volume Today</span>
+                    <span class="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse"></span>
+                    <span class="text-primary text-sm font-semibold tracking-wide">🔴 LIVE: <span id="active-traders">1,247</span> Active Traders • $<span id="daily-volume">3.7M</span> Volume Today</span>
                 </div>
                 
                 <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
@@ -148,20 +282,78 @@
                 </p>
                 
                 <div class="glass-morphism rounded-xl p-6 mb-10 max-w-2xl mx-auto border border-electric-blue">
-                    <p class="text-electric-blue text-base font-semibold">
-                        ⚠️ <strong>Exclusive Launch:</strong> Limited to first 500 customers. <span id="licenses-left" class="text-neon-green font-bold">47 spots remaining</span>
-                    </p>
+                    <div class="text-center">
+                        <p class="text-primary text-base font-semibold mb-4">
+                            ⚠️ <strong>LIMITED TIME OFFER:</strong> Special Launch Price
+                        </p>
+                        <div class="countdown-timer justify-center mb-3">
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-hours">23</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-minutes">47</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-seconds">52</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                        <p class="text-amber-400 text-sm">
+                            Only <span id="licenses-left" class="text-primary font-bold text-lg">47</span> licenses left at this price!
+                        </p>
+                    </div>
                 </div>
             </div>
             
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-                <a href="#buy-now" class="group px-10 py-5 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-xl rounded-xl hover:scale-105 transition-all duration-300 neon-glow hover-lift">
-                    <span class="group-hover:animate-pulse">Get CoinTrader AI Now</span>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                <a href="#buy-now" class="group px-10 py-5 bg-gradient-to-r from-primary to-secondary text-white font-bold text-xl rounded-xl hover:scale-105 transition-all duration-300 primary-glow hover-lift">
+                    <span class="group-hover:animate-pulse">Get Instant Access</span>
                     <span class="ml-3 text-2xl">→</span>
                 </a>
-                <a href="#demo" class="px-10 py-5 glass-morphism border-2 border-electric-blue text-electric-blue font-semibold text-xl rounded-xl hover:bg-electric-blue hover:text-black transition-all duration-300 hover-lift scroll-indicator">
-                    Watch Live Demo
+                <a href="#demo" class="px-10 py-5 glass-morphism border-2 border-primary text-primary font-semibold text-xl rounded-xl hover:bg-primary hover:text-white transition-all duration-300 hover-lift scroll-indicator">
+                    Watch Live Results
                 </a>
+            </div>
+            
+            <!-- Trust Logos -->
+            <div class="mb-8">
+                <p class="text-gray-500 text-sm mb-4 text-center">As featured on</p>
+                <div class="flex justify-center items-center gap-8 opacity-60 grayscale">
+                    <div class="text-2xl font-bold text-gray-400">Forbes</div>
+                    <div class="text-2xl font-bold text-gray-400">TechCrunch</div>
+                    <div class="text-2xl font-bold text-gray-400">CoinDesk</div>
+                    <div class="text-2xl font-bold text-gray-400">Bloomberg</div>
+                </div>
+            </div>
+            
+            <!-- Security Badges -->
+            <div class="flex justify-center items-center gap-4 mb-12">
+                <div class="trust-seal">
+                    <div class="text-center">
+                        <div class="text-secondary text-2xl mb-1">🔒</div>
+                        <div class="text-xs text-gray-400">SSL Secured</div>
+                    </div>
+                </div>
+                <div class="trust-seal">
+                    <div class="text-center">
+                        <div class="text-primary text-2xl mb-1">✓</div>
+                        <div class="text-xs text-gray-400">Verified</div>
+                    </div>
+                </div>
+                <div class="trust-seal">
+                    <div class="text-center">
+                        <div class="text-amber-400 text-2xl mb-1">⭐</div>
+                        <div class="text-xs text-gray-400">5.0 Rating</div>
+                    </div>
+                </div>
+                <div class="trust-seal">
+                    <div class="text-center">
+                        <div class="text-accent text-2xl mb-1">🛡️</div>
+                        <div class="text-xs text-gray-400">Protected</div>
+                    </div>
+                </div>
             </div>
             
             <div class="space-y-8">
@@ -199,6 +391,63 @@
             </div>
         </div>
     </section>
+    
+    <!-- Profit Calculator Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-gray-900 to-dark-bg">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                <span class="gradient-text">Calculate Your Potential Profits</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-12">See how much you could earn with CoinTrader AI based on real performance data</p>
+            
+            <div class="glass-morphism rounded-2xl p-8">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <label class="block text-gray-400 mb-3">Your Starting Investment</label>
+                        <input type="number" id="investment-amount" class="calculator-input" placeholder="$1,000" value="1000" onchange="calculateProfit()">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-3">Time Period</label>
+                        <select id="time-period" class="calculator-input" onchange="calculateProfit()">
+                            <option value="1">1 Month</option>
+                            <option value="3" selected>3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">1 Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <p class="text-gray-400 mb-2">Estimated Profit</p>
+                    <div class="profit-display" id="profit-display">$3,693</div>
+                    <p class="text-sm text-gray-500 mt-2">Based on 23.1% average monthly returns*</p>
+                </div>
+                
+                <div class="bg-dark-bg rounded-lg p-6">
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <p class="text-gray-400 text-sm">Total Return</p>
+                            <p class="text-2xl font-bold text-white" id="total-return">$4,693</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">ROI</p>
+                            <p class="text-2xl font-bold text-neon-green" id="roi-percent">369%</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Daily Avg</p>
+                            <p class="text-2xl font-bold text-electric-blue" id="daily-avg">$41</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <button onclick="selectPlan('complete')" class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:scale-105 transition-transform duration-300">
+                        Start Earning Now →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- How It Works Section -->
     <section class="py-20 px-4">
@@ -209,30 +458,30 @@
             
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="text-center group">
-                    <div class="w-20 h-20 bg-gradient-to-r from-neon-green to-electric-blue rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div class="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-8 text-white font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
                         1
                     </div>
-                    <h3 class="text-2xl font-bold mb-6 text-neon-green">Connect Exchange</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-primary">Connect Exchange</h3>
                     <p class="text-gray-400 leading-relaxed">
                         Link your Binance, Coinbase, or KuCoin account using secure API keys. Your funds stay in your exchange.
                     </p>
                 </div>
                 
                 <div class="text-center group">
-                    <div class="w-20 h-20 bg-gradient-to-r from-success-green to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div class="w-20 h-20 bg-gradient-to-r from-secondary to-green-400 rounded-full flex items-center justify-center mx-auto mb-8 text-white font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
                         2
                     </div>
-                    <h3 class="text-2xl font-bold mb-6 text-success-green">Select Strategy</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-secondary">Select Strategy</h3>
                     <p class="text-gray-400 leading-relaxed">
                         Choose from pre-built AI strategies or customize your own. Set risk levels and trading pairs.
                     </p>
                 </div>
                 
                 <div class="text-center group">
-                    <div class="w-20 h-20 bg-gradient-to-r from-electric-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div class="w-20 h-20 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-8 text-white font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
                         3
                     </div>
-                    <h3 class="text-2xl font-bold mb-6 text-electric-blue">Let AI Trade</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-accent">Let AI Trade</h3>
                     <p class="text-gray-400 leading-relaxed">
                         Sit back while our AI analyzes markets and executes profitable trades 24/7, even while you sleep.
                     </p>
@@ -520,7 +769,7 @@
             <div class="max-w-2xl mx-auto mb-16">
                 <div class="glass-morphism rounded-3xl p-10 border-2 border-neon-green neon-glow relative hover-lift">
                     <div class="absolute -top-5 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-8 py-3 rounded-full font-bold text-lg">
+                        <span class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-full font-bold text-lg">
                             🔥 LIMITED TIME OFFER
                         </span>
                     </div>
@@ -533,9 +782,9 @@
                         <p class="text-gray-400 text-lg mb-6">Everything you need to dominate crypto trading</p>
                         
                         <div class="pricing-display">
-                            <div class="text-6xl font-black text-neon-green mb-2">$297</div>
+                            <div class="text-6xl font-black text-primary mb-2">$297</div>
                             <p class="text-gray-400 text-lg">One-Time Payment</p>
-                            <p class="text-sm text-green-400 mt-2">Lifetime Access • No Monthly Fees</p>
+                            <p class="text-sm text-secondary mt-2">Lifetime Access • No Monthly Fees</p>
                         </div>
                     </div>
                     
@@ -598,7 +847,7 @@
                         </div>
                     </div>
                     
-                    <button onclick="selectPlan('complete')" class="w-full py-5 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-xl rounded-xl hover:scale-105 transition-transform duration-300 shadow-2xl">
+                    <button onclick="selectPlan('complete')" class="w-full py-5 bg-gradient-to-r from-primary to-secondary text-white font-bold text-xl rounded-xl hover:scale-105 transition-transform duration-300 shadow-2xl">
                         Start Trading Now →
                     </button>
                     
@@ -647,7 +896,7 @@
                         <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
                             bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
                         </div>
-                        <button onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')" class="mt-2 text-xs bg-neon-green text-black px-3 py-1 rounded hover:bg-green-400 transition-colors">
+                        <button onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')" class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
                             Copy Address
                         </button>
                         <div class="mt-4 flex justify-center">
@@ -661,7 +910,7 @@
                         <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
                             0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5
                         </div>
-                        <button onclick="copyToClipboard('0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5')" class="mt-2 text-xs bg-electric-blue text-black px-3 py-1 rounded hover:bg-blue-400 transition-colors">
+                        <button onclick="copyToClipboard('0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5')" class="mt-2 text-xs bg-primary text-white px-3 py-1 rounded hover:bg-primary-dark transition-colors">
                             Copy Address
                         </button>
                         <div class="mt-4 flex justify-center">
@@ -675,7 +924,7 @@
                         <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
                             TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm
                         </div>
-                        <button onclick="copyToClipboard('TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm')" class="mt-2 text-xs bg-neon-green text-black px-3 py-1 rounded hover:bg-green-400 transition-colors">
+                        <button onclick="copyToClipboard('TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm')" class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
                             Copy Address
                         </button>
                         <div class="mt-4 flex justify-center">
@@ -695,7 +944,7 @@
                 
                 <div class="text-center space-y-4">
                     <div class="grid md:grid-cols-2 gap-4">
-                        <button onclick="toggleChat()" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold rounded-lg hover:scale-105 transition-transform duration-300">
+                        <button onclick="toggleChat()" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:scale-105 transition-transform duration-300">
                             <span>💬 Live Chat Support</span>
                         </button>
                         <a href="mailto:support@cointrader-ai.com" class="inline-flex items-center justify-center px-6 py-3 border-2 border-electric-blue text-electric-blue font-bold rounded-lg hover:bg-electric-blue hover:text-black transition-all duration-300">
@@ -802,6 +1051,42 @@
             </div>
         </div>
     </section>
+    
+    <!-- ROI Timeline Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                <span class="gradient-text">Your Journey to Financial Freedom</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-12">See what's possible with CoinTrader AI over time</p>
+            
+            <div class="roi-timeline">
+                <div class="roi-milestone">
+                    <h3 class="text-2xl font-bold text-neon-green mb-2">Month 1</h3>
+                    <p class="text-gray-300">Learn the system, optimize settings</p>
+                    <p class="text-xl font-semibold text-white mt-2">Average: +15-25% returns</p>
+                </div>
+                
+                <div class="roi-milestone">
+                    <h3 class="text-2xl font-bold text-electric-blue mb-2">Month 3</h3>
+                    <p class="text-gray-300">AI fully optimized, compound gains</p>
+                    <p class="text-xl font-semibold text-white mt-2">Portfolio: 2-4x initial investment</p>
+                </div>
+                
+                <div class="roi-milestone">
+                    <h3 class="text-2xl font-bold text-accent-purple mb-2">Month 6</h3>
+                    <p class="text-gray-300">Consistent profits, scaling up</p>
+                    <p class="text-xl font-semibold text-white mt-2">Many users quit their jobs</p>
+                </div>
+                
+                <div class="roi-milestone">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">Month 12+</h3>
+                    <p class="text-gray-300">Financial freedom achieved</p>
+                    <p class="text-xl font-semibold text-white mt-2">$100k+ annual passive income</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="py-12 px-4 bg-dark-bg border-t border-border-gray">
@@ -858,6 +1143,36 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Exit Intent Popup -->
+    <div id="exit-popup" class="exit-popup">
+        <div class="exit-popup-content">
+            <button onclick="closeExitPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-amber-500">WAIT!</span> Don't Leave Empty-Handed
+                </h2>
+                <p class="text-2xl text-primary font-bold mb-4">Get an EXTRA 25% OFF</p>
+                <p class="text-xl text-gray-300 mb-6">This is your FINAL chance to get CoinTrader AI at the lowest price ever!</p>
+                
+                <div class="bg-slate-800 border border-primary rounded-lg p-4 mb-6">
+                    <p class="text-3xl font-bold text-white">
+                        <span class="line-through text-gray-400">$297</span> 
+                        <span class="text-primary ml-2">$223</span>
+                    </p>
+                    <p class="text-amber-400">Save $74 - Today Only!</p>
+                </div>
+                
+                <button onclick="acceptExitOffer()" class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold text-xl rounded-xl hover:scale-105 transition-transform duration-300 mb-4">
+                    Yes! Give Me The Discount →
+                </button>
+                
+                <button onclick="closeExitPopup()" class="text-gray-400 hover:text-gray-300 text-sm">
+                    No thanks, I don't want to save money
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script>
         let cryptoPrices = { bitcoin: 43000, ethereum: 2650, tether: 1.00 };
@@ -865,15 +1180,29 @@
             totalTrades: 1247,
             winRate: 95.7,
             profitToday: 1247.82,
-            licensesLeft: 47
+            licensesLeft: 47,
+            activeTraders: 1247,
+            dailyVolume: 3.7
         };
+        
+        // Purchase notifications data
+        const purchaseNotifications = [
+            { name: 'John S.', location: 'New York, USA', amount: '$5,000', time: '2 minutes ago' },
+            { name: 'Maria L.', location: 'London, UK', amount: '$10,000', time: '5 minutes ago' },
+            { name: 'Chen W.', location: 'Singapore', amount: '$3,000', time: '7 minutes ago' },
+            { name: 'Alex R.', location: 'Toronto, Canada', amount: '$7,500', time: '12 minutes ago' },
+            { name: 'Sophie M.', location: 'Sydney, Australia', amount: '$4,000', time: '15 minutes ago' },
+            { name: 'Ahmed K.', location: 'Dubai, UAE', amount: '$15,000', time: '18 minutes ago' },
+            { name: 'Lisa T.', location: 'Berlin, Germany', amount: '$6,000', time: '22 minutes ago' },
+            { name: 'Ryan P.', location: 'Los Angeles, USA', amount: '$8,000', time: '25 minutes ago' }
+        ];
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 // Create better notification
                 const notification = document.createElement('div');
                 notification.innerHTML = '✓ Address copied!';
-                notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-3 rounded-xl font-bold z-50 shadow-lg neon-glow';
+                notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-bold z-50 shadow-lg primary-glow';
                 document.body.appendChild(notification);
                 setTimeout(() => notification.remove(), 2000);
             });
@@ -926,7 +1255,7 @@
             // Add visual feedback
             const notification = document.createElement('div');
             notification.innerHTML = `✅ Ready to complete your purchase!`;
-            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-3 rounded-xl font-bold z-50 shadow-lg neon-glow';
+            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-bold z-50 shadow-lg primary-glow';
             document.body.appendChild(notification);
             setTimeout(() => notification.remove(), 3000);
         }
@@ -1003,16 +1332,167 @@
             });
         });
 
+        // Countdown timer
+        function startCountdown() {
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours from now
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
+                
+                if (distance < 0) {
+                    document.getElementById('countdown-hours').textContent = '00';
+                    document.getElementById('countdown-minutes').textContent = '00';
+                    document.getElementById('countdown-seconds').textContent = '00';
+                }
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // Show purchase notifications
+        function showPurchaseNotification() {
+            const notification = purchaseNotifications[Math.floor(Math.random() * purchaseNotifications.length)];
+            
+            const notificationEl = document.createElement('div');
+            notificationEl.className = 'purchase-notification';
+            notificationEl.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-neon-green to-electric-blue rounded-full"></div>
+                    <div>
+                        <p class="text-white font-semibold">${notification.name} from ${notification.location}</p>
+                        <p class="text-gray-400 text-sm">Just purchased CoinTrader AI for ${notification.amount}</p>
+                        <p class="text-gray-500 text-xs">${notification.time}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notificationEl);
+            
+            setTimeout(() => notificationEl.classList.add('show'), 100);
+            setTimeout(() => {
+                notificationEl.classList.remove('show');
+                setTimeout(() => notificationEl.remove(), 500);
+            }, 5000);
+        }
+        
+        // Play demo video
+        function playDemoVideo() {
+            // In a real implementation, this would embed and play a video
+            alert('Demo video feature coming soon! For now, check out our live dashboard below.');
+        }
+        
+        // Exit intent detection
+        let exitShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (!exitShown && e.clientY <= 0) {
+                showExitPopup();
+            }
+        });
+        
+        function showExitPopup() {
+            if (exitShown) return;
+            exitShown = true;
+            document.getElementById('exit-popup').classList.add('show');
+        }
+        
+        function closeExitPopup() {
+            document.getElementById('exit-popup').classList.remove('show');
+        }
+        
+        function acceptExitOffer() {
+            // Update price to discounted amount
+            document.getElementById('selected-price').textContent = '223';
+            closeExitPopup();
+            // Scroll to payment section
+            selectPlan('complete');
+        }
+        
+        // Profit calculator
+        function calculateProfit() {
+            const investment = parseFloat(document.getElementById('investment-amount').value) || 1000;
+            const timeMonths = parseInt(document.getElementById('time-period').value) || 3;
+            const monthlyReturn = 0.231; // 23.1% monthly return
+            
+            let totalReturn = investment;
+            for (let i = 0; i < timeMonths; i++) {
+                totalReturn *= (1 + monthlyReturn);
+            }
+            
+            const profit = totalReturn - investment;
+            const roi = ((profit / investment) * 100);
+            const dailyAvg = profit / (timeMonths * 30);
+            
+            document.getElementById('profit-display').textContent = `$${profit.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            document.getElementById('total-return').textContent = `$${totalReturn.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            document.getElementById('roi-percent').textContent = `${roi.toFixed(0)}%`;
+            document.getElementById('daily-avg').textContent = `$${dailyAvg.toFixed(0)}`;
+        }
+        
+        // Update live stats
+        function updateLiveStats() {
+            // Update active traders
+            tradingStats.activeTraders += Math.floor(Math.random() * 3) + 1;
+            const activeTraders = document.getElementById('active-traders');
+            if (activeTraders) activeTraders.textContent = tradingStats.activeTraders.toLocaleString();
+            
+            // Update daily volume
+            tradingStats.dailyVolume += Math.random() * 0.1;
+            const dailyVolume = document.getElementById('daily-volume');
+            if (dailyVolume) dailyVolume.textContent = tradingStats.dailyVolume.toFixed(1) + 'M';
+            
+            // Randomly decrease licenses
+            if (Math.random() < 0.15) {
+                tradingStats.licensesLeft = Math.max(7, tradingStats.licensesLeft - 1);
+                const licensesEl = document.getElementById('licenses-left');
+                if (licensesEl) {
+                    licensesEl.textContent = tradingStats.licensesLeft;
+                    if (tradingStats.licensesLeft <= 10) {
+                        licensesEl.className = 'text-red-500 font-bold text-lg animate-pulse';
+                    }
+                }
+            }
+        }
+        
         // Initialize and start updates
         document.addEventListener('DOMContentLoaded', function() {
             loadCryptoPrices();
             updatePriceDisplay();
+            startCountdown();
             
             // Add floating support button
             createSupportButton();
             
             // Add progress bar
             createProgressBar();
+            
+            // Initialize profit calculator
+            calculateProfit();
+            
+            // Show first purchase notification after 5 seconds
+            setTimeout(() => showPurchaseNotification(), 5000);
+            
+            // Show purchase notifications every 15-30 seconds
+            setInterval(() => {
+                if (Math.random() < 0.7) showPurchaseNotification();
+            }, 20000);
+            
+            // Show exit popup after 30 seconds if not already shown
+            setTimeout(() => {
+                if (!exitShown) showExitPopup();
+            }, 30000);
+            
+            // Update live stats every 5 seconds
+            setInterval(updateLiveStats, 5000);
             
             // Auto-highlight the main CTA button
             setTimeout(() => {
@@ -1047,7 +1527,7 @@
             const supportBtn = document.createElement('div');
             supportBtn.innerHTML = `
                 <button onclick="toggleChat()" 
-                   class="fixed bottom-6 right-6 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-50 flex items-center space-x-2 neon-glow">
+                   class="fixed bottom-6 right-6 bg-gradient-to-r from-primary to-secondary text-white font-bold px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-50 flex items-center space-x-2 primary-glow">
                     <span class="text-xl">💬</span>
                     <span class="hidden md:inline font-semibold">Need Help?</span>
                 </button>
@@ -1090,7 +1570,7 @@
                         <input type="text" id="chat-input" placeholder="Type your message..." 
                                class="flex-1 bg-gray-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-neon-green"
                                onkeypress="if(event.key==='Enter')sendMessage()">
-                        <button onclick="sendMessage()" class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
+                        <button onclick="sendMessage()" class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
                             Send
                         </button>
                     </div>

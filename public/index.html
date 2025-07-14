@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoinTrader AI - #1 Automated Crypto Trading Bot | $297 Lifetime Access</title>
+    <meta name="description" content="Join 1,200+ profitable traders using CoinTrader AI. Automated crypto trading bot with 23.1% average monthly returns. $297 one-time payment, lifetime access.">
+    <meta property="og:title" content="CoinTrader AI - Automated Crypto Trading Bot">
+    <meta property="og:description" content="Make money while you sleep with our AI-powered trading bot. 30-day money-back guarantee.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cointrader-ai.com">
+    <link rel="canonical" href="https://cointrader-ai.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-green': '#00ff88',
+                        'electric-blue': '#00d4ff',
+                        'success-green': '#10b981',
+                        'deep-blue': '#1e40af',
+                        'accent-purple': '#8b5cf6',
+                        'dark-bg': '#0a0a0a',
+                        'card-bg': '#1a1a1a',
+                        'glass-bg': 'rgba(26, 26, 26, 0.8)',
+                        'border-gray': '#333333',
+                        'border-light': '#404040'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; }
+        .gradient-text { 
+            background: linear-gradient(135deg, #00ff88, #00d4ff, #8b5cf6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .neon-glow { box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.1); }
+        .electric-glow { box-shadow: 0 0 30px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.1); }
+        .glass-morphism { 
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hover-lift { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .crypto-icon { width: 28px; height: 28px; display: inline-block; vertical-align: middle; }
+        .elegant-border { border: 1px solid; border-image: linear-gradient(45deg, #ffd700, #f59e0b) 1; }
+        .scroll-indicator { position: relative; }
+        .scroll-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .scroll-indicator:hover::after { transform: scaleX(1); }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        @media (max-width: 768px) {
+            .glass-morphism { backdrop-filter: blur(10px); }
+            .hover-lift:hover { transform: translateY(-4px); }
+            .gradient-text { font-size: 3rem; }
+            #chat-widget { 
+                width: calc(100vw - 2rem); 
+                right: 1rem; 
+                bottom: 5rem;
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white overflow-x-hidden">
+    <!-- Navigation -->  
+    <nav class="fixed top-0 w-full z-50 glass-morphism border-b border-border-light">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">
+                    CoinTrader AI
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#demo" class="hover:text-primary-gold transition-colors scroll-indicator">Demo</a>
+                    <a href="#buy-now" class="hover:text-electric-blue transition-colors scroll-indicator">Get Started</a>
+                    <a href="#faq" class="hover:text-neon-green transition-colors scroll-indicator">FAQ</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none">
+                    <div id="mobile-menu-icon" class="space-y-1">
+                        <div class="w-6 h-0.5 bg-white transition-transform"></div>
+                        <div class="w-6 h-0.5 bg-white transition-transform"></div>
+                        <div class="w-6 h-0.5 bg-white transition-transform"></div>
+                    </div>
+                </button>
+                <a href="#buy-now" class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform duration-300">
+                    Get Started
+                </a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-dark-bg border-t border-border-light">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#demo" class="block text-white hover:text-electric-blue transition-colors">Demo</a>
+                <a href="#buy-now" class="block text-white hover:text-electric-blue transition-colors">Get Started</a>
+                <a href="#faq" class="block text-white hover:text-neon-green transition-colors">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center px-4 py-16 pt-32 bg-gradient-to-br from-dark-bg via-gray-900 to-dark-bg">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="inline-flex items-center px-6 py-3 glass-morphism rounded-full mb-8 hover-lift">
+                    <span class="w-3 h-3 bg-primary-gold rounded-full mr-3 animate-pulse"></span>
+                    <span class="text-neon-green text-sm font-semibold tracking-wide">🔴 LIVE: 847 Active Traders • $2.3M Volume Today</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                    <span class="gradient-text">Automated AI Trading.</span><br>
+                    <span class="text-white">Real Crypto Profits.</span>
+                </h1>
+                
+                <p class="text-2xl md:text-3xl text-gray-200 mb-6 max-w-4xl mx-auto font-light">
+                    100% Autonomous. 0% Emotion. Accepting Crypto Only.
+                </p>
+                
+                <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Let our AI trade 24/7 while you sleep. Connect your exchange, choose a strategy, and watch your portfolio grow with institutional-grade automation.
+                </p>
+                
+                <div class="glass-morphism rounded-xl p-6 mb-10 max-w-2xl mx-auto border border-electric-blue">
+                    <p class="text-electric-blue text-base font-semibold">
+                        ⚠️ <strong>Exclusive Launch:</strong> Limited to first 500 customers. <span id="licenses-left" class="text-neon-green font-bold">47 spots remaining</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                <a href="#buy-now" class="group px-10 py-5 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-xl rounded-xl hover:scale-105 transition-all duration-300 neon-glow hover-lift">
+                    <span class="group-hover:animate-pulse">Get CoinTrader AI Now</span>
+                    <span class="ml-3 text-2xl">→</span>
+                </a>
+                <a href="#demo" class="px-10 py-5 glass-morphism border-2 border-electric-blue text-electric-blue font-semibold text-xl rounded-xl hover:bg-electric-blue hover:text-black transition-all duration-300 hover-lift scroll-indicator">
+                    Watch Live Demo
+                </a>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="flex justify-center items-center gap-12 text-gray-300">
+                    <div class="flex items-center hover-lift cursor-pointer">
+                        <span class="crypto-icon text-neon-green">₿</span>
+                        <span class="ml-3 font-semibold">Bitcoin</span>
+                    </div>
+                    <div class="flex items-center hover-lift cursor-pointer">
+                        <span class="crypto-icon text-electric-blue">Ξ</span>
+                        <span class="ml-3 font-semibold">Ethereum</span>
+                    </div>
+                    <div class="flex items-center hover-lift cursor-pointer">
+                        <span class="crypto-icon text-accent-purple">₮</span>
+                        <span class="ml-3 font-semibold">USDT</span>
+                    </div>
+                </div>
+                
+                <div class="glass-morphism rounded-2xl p-6 max-w-2xl mx-auto">
+                    <div class="grid grid-cols-3 gap-6 text-center">
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-success-green rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-success-green font-medium">Live Signals</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-deep-blue rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-deep-blue font-medium">AI Active</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-accent-amber rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-accent-amber font-medium">Protected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">How It Works</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-neon-green to-electric-blue rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-neon-green">Connect Exchange</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Link your Binance, Coinbase, or KuCoin account using secure API keys. Your funds stay in your exchange.
+                    </p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-success-green to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-success-green">Select Strategy</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Choose from pre-built AI strategies or customize your own. Set risk levels and trading pairs.
+                    </p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-electric-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-8 text-black font-bold text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-electric-blue">Let AI Trade</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Sit back while our AI analyzes markets and executes profitable trades 24/7, even while you sleep.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 bg-card-bg">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Why CoinTrader AI?</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-neon-green transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neon-green to-electric-blue rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">🤖</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-neon-green">Neural Network AI</h3>
+                    <p class="text-gray-400">Advanced GPT-4 powered trading engine with 95.7% profitable trades*. Analyzes 10,000+ data points per second across 50+ indicators.</p>
+                </div>
+                
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-success-green transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-success-green to-emerald-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">🌙</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-success-green">Non-Stop Execution</h3>
+                    <p class="text-gray-400">Executes 200+ trades daily. Lightning-fast 0.003s execution speed beats 99% of human traders. Never sleeps, never emotions.</p>
+                </div>
+                
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-accent-amber transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-accent-amber to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">🛡️</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-accent-amber">Smart Risk Control</h3>
+                    <p class="text-gray-400">AI-driven portfolio protection with dynamic stop-losses. Maximum 2% risk per trade. Auto-adjusts during market volatility.</p>
+                </div>
+                
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-deep-blue transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-deep-blue to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-deep-blue">3-Minute Setup</h3>
+                    <p class="text-gray-400">Copy-paste API keys, select strategy, activate. No coding, no charts, no stress. Automated profit in under 180 seconds.</p>
+                </div>
+                
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-neon-green transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-neon-green to-success-green rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">💎</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-neon-green">Multi-Exchange Arsenal</h3>
+                    <p class="text-gray-400">Supports 15+ exchanges: Binance, Coinbase, KuCoin, Kraken. Trades 500+ coins. Cross-exchange arbitrage opportunities.</p>
+                </div>
+                
+                <div class="glass-morphism p-8 rounded-2xl border border-border-light hover:border-success-green transition-all duration-300 hover-lift group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-success-green to-emerald-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-black font-bold text-xl">🔒</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-success-green">Bank-Level Security</h3>
+                    <p class="text-gray-400">256-bit encryption, read-only API access. Your funds stay on YOUR exchange. Zero withdrawal permissions needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Trading Signals Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-gray-900 to-dark-bg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                <span class="gradient-text">Live AI Signals</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-12">See what our AI is trading right now. These are real signals from our production system.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-card-bg rounded-lg p-6 border border-green-600">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-green-400 font-semibold">BUY SIGNAL</span>
+                        <span class="text-xs text-gray-400" id="signal-time-1">2 min ago</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">BTC/USDT</div>
+                    <div class="text-green-400 text-lg mb-4">Entry: $43,234</div>
+                    <div class="text-sm text-gray-400">
+                        <div>Target: $44,850 (+3.74%)</div>
+                        <div>Stop: $42,100 (-2.62%)</div>
+                        <div class="text-green-400 mt-2">Status: FILLED ✓</div>
+                    </div>
+                </div>
+                
+                <div class="bg-card-bg rounded-lg p-6 border border-red-600">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-red-400 font-semibold">SELL SIGNAL</span>
+                        <span class="text-xs text-gray-400" id="signal-time-2">7 min ago</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">ETH/USDT</div>
+                    <div class="text-red-400 text-lg mb-4">Entry: $2,678</div>
+                    <div class="text-sm text-gray-400">
+                        <div>Target: $2,589 (+3.32%)</div>
+                        <div>Stop: $2,745 (-2.50%)</div>
+                        <div class="text-green-400 mt-2">Profit: +$89.50 ✓</div>
+                    </div>
+                </div>
+                
+                <div class="bg-card-bg rounded-lg p-6 border border-blue-600">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-blue-400 font-semibold">BUY SIGNAL</span>
+                        <span class="text-xs text-gray-400" id="signal-time-3">12 min ago</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">SOL/USDT</div>
+                    <div class="text-blue-400 text-lg mb-4">Entry: $89.45</div>
+                    <div class="text-sm text-gray-400">
+                        <div>Target: $93.20 (+4.19%)</div>
+                        <div>Stop: $86.80 (-2.96%)</div>
+                        <div class="text-yellow-400 mt-2">Status: ACTIVE ⏳</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-card-bg rounded-lg p-4 max-w-2xl mx-auto">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-400">Today's Performance:</span>
+                    <span class="text-neon-green font-bold text-lg">+$1,247.82 (89% Win Rate)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Preview Section -->
+    <section id="demo" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                <span class="gradient-text">See It In Action</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+                Real-time dashboard showing live trades, profits, and analytics. This is what you'll see when CoinTrader AI is working for you.
+            </p>
+            
+            <div class="bg-card-bg rounded-2xl p-8 border border-border-gray max-w-4xl mx-auto">
+                <div class="bg-dark-bg rounded-lg p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-neon-green">Portfolio Performance</h3>
+                        <span class="text-2xl font-bold text-neon-green">+24.7%</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <p class="text-gray-400 text-sm">Total Trades</p>
+                            <p class="text-xl font-bold text-white" id="total-trades">1,247</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Win Rate</p>
+                            <p class="text-xl font-bold text-neon-green" id="win-rate">95.7%*</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Profit Today</p>
+                            <p class="text-xl font-bold text-electric-blue" id="profit-today">$1,247.82</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-dark-bg rounded-lg p-4">
+                        <h4 class="font-semibold mb-3 text-electric-blue">Recent Trades</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">BTC/USDT Buy</span>
+                                <span class="text-neon-green">+$47.23</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">ETH/USDT Sell</span>
+                                <span class="text-neon-green">+$28.91</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">ADA/USDT Buy</span>
+                                <span class="text-neon-green">+$15.67</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-bg rounded-lg p-4">
+                        <h4 class="font-semibold mb-3 text-neon-green">AI Status</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-neon-green rounded-full mr-2 animate-pulse"></span>
+                                <span class="text-gray-400">Trading Active</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-electric-blue rounded-full mr-2 animate-pulse"></span>
+                                <span class="text-gray-400">Market Analysis Running</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-neon-green rounded-full mr-2 animate-pulse"></span>
+                                <span class="text-gray-400">Risk Management Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 bg-card-bg">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">What Users Say</span>
+            </h2>
+            
+            <div class="bg-card-bg rounded-2xl p-8 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-white mb-8">Join Our Private Community</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-neon-green to-electric-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-black font-bold text-2xl">💬</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Exclusive VIP Telegram Group</h4>
+                        <p class="text-gray-400 text-sm">
+                            <span class="text-yellow-400">🎁 Bonus for customers only!</span> Join 1,200+ profitable traders sharing live results, strategies, and alpha.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-electric-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-2xl">🎯</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">1-on-1 Support</h4>
+                        <p class="text-gray-400 text-sm">
+                            Personal setup assistance and strategy optimization. 
+                            Average response time: 1-2 hours, even on weekends.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-dark-bg rounded-xl p-6">
+                    <h4 class="text-lg font-bold text-neon-green mb-4 text-center">What You'll Get Access To:</h4>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-neon-green mr-3">✓</span>
+                                Live profit/loss screenshots from users
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-neon-green mr-3">✓</span>
+                                Custom strategy configurations
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-neon-green mr-3">✓</span>
+                                Market analysis and timing tips
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-electric-blue mr-3">✓</span>
+                                Early access to new features
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-electric-blue mr-3">✓</span>
+                                Optimization guides and tutorials
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <span class="text-electric-blue mr-3">✓</span>
+                                Direct line to the development team
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section id="buy-now" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                    <span class="gradient-text">Start Trading Like a Pro Today</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    One simple payment. Lifetime access. Everything included.
+                </p>
+            </div>
+            
+            <!-- Single Premium Plan -->
+            <div class="max-w-2xl mx-auto mb-16">
+                <div class="glass-morphism rounded-3xl p-10 border-2 border-neon-green neon-glow relative hover-lift">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-8 py-3 rounded-full font-bold text-lg">
+                            🔥 LIMITED TIME OFFER
+                        </span>
+                    </div>
+                    
+                    <div class="text-center mb-8 mt-4">
+                        <div class="w-20 h-20 bg-gradient-to-br from-neon-green to-electric-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-black font-bold text-3xl">🚀</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-3">CoinTrader AI Complete</h3>
+                        <p class="text-gray-400 text-lg mb-6">Everything you need to dominate crypto trading</p>
+                        
+                        <div class="pricing-display">
+                            <div class="text-6xl font-black text-neon-green mb-2">$297</div>
+                            <p class="text-gray-400 text-lg">One-Time Payment</p>
+                            <p class="text-sm text-green-400 mt-2">Lifetime Access • No Monthly Fees</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-3 mb-8">
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Unlimited Exchanges</strong>
+                                <p class="text-xs text-gray-400">Connect Binance, KuCoin, Coinbase + 20 more</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">All AI Strategies</strong>
+                                <p class="text-xs text-gray-400">15+ strategies + custom builder</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Unlimited Portfolio</strong>
+                                <p class="text-xs text-gray-400">No limits on trading volume</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">AI Risk Management</strong>
+                                <p class="text-xs text-gray-400">Advanced position sizing & stop-loss</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Cross-Exchange Arbitrage</strong>
+                                <p class="text-xs text-gray-400">Exploit price differences automatically</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Developer API</strong>
+                                <p class="text-xs text-gray-400">Build custom integrations</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Priority Support</strong>
+                                <p class="text-xs text-gray-400">24/7 VIP Telegram + Email</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-300">
+                            <span class="text-neon-green mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-white">Monthly Updates</strong>
+                                <p class="text-xs text-gray-400">New strategies & features</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="selectPlan('complete')" class="w-full py-5 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold text-xl rounded-xl hover:scale-105 transition-transform duration-300 shadow-2xl">
+                        Start Trading Now →
+                    </button>
+                    
+                    <div class="text-center mt-6">
+                        <div class="bg-green-900 border border-green-600 rounded-lg p-3 mb-4">
+                            <p class="text-green-300 text-sm font-semibold">
+                                🔒 30-Day Money-Back Guarantee
+                            </p>
+                            <p class="text-green-200 text-xs">Try risk-free for 30 days. Not satisfied? Full refund, no questions asked.</p>
+                        </div>
+                        <div class="flex justify-center items-center space-x-4 text-xs text-gray-400">
+                            <span>🔒 256-bit SSL</span>
+                            <span>🏦 Regulated</span>
+                            <span>✅ Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dynamic Payment Section -->
+            <div id="payment-section" class="glass-morphism rounded-3xl p-10 border-2 border-electric-blue electric-glow max-w-4xl mx-auto" style="display: none;">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold mb-4">
+                        Complete Your <span id="selected-plan-name" class="gradient-text">CoinTrader AI</span> Purchase
+                    </h3>
+                    <div class="text-6xl font-black text-neon-green mb-2">
+                        $<span id="selected-price">297</span>
+                    </div>
+                    <div class="text-xl text-gray-400 mb-4">
+                        One-Time Payment • Lifetime Access
+                    </div>
+                    <div class="text-lg text-white mb-4">Crypto Payments Only: BTC, ETH, USDT</div>
+                    
+                    <div class="bg-blue-900 border border-blue-600 rounded-lg p-4 mb-4">
+                        <p class="text-blue-300 text-sm">
+                            🔥 <strong>Current Crypto Prices:</strong><br>
+                            <span id="live-prices">Loading live rates...</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-dark-bg rounded-lg p-4 border border-border-gray">
+                        <div class="text-2xl mb-2">₿</div>
+                        <div class="font-semibold text-white mb-2">Bitcoin</div>
+                        <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
+                            bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                        </div>
+                        <button onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')" class="mt-2 text-xs bg-neon-green text-black px-3 py-1 rounded hover:bg-green-400 transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="btc-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" alt="Bitcoin QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-bg rounded-lg p-4 border border-border-gray">
+                        <div class="text-2xl mb-2">Ξ</div>
+                        <div class="font-semibold text-white mb-2">Ethereum</div>
+                        <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
+                            0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5
+                        </div>
+                        <button onclick="copyToClipboard('0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5')" class="mt-2 text-xs bg-electric-blue text-black px-3 py-1 rounded hover:bg-blue-400 transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="eth-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5" alt="Ethereum QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-dark-bg rounded-lg p-4 border border-border-gray">
+                        <div class="text-2xl mb-2">₮</div>
+                        <div class="font-semibold text-white mb-2">USDT (TRC20)</div>
+                        <div class="text-sm text-gray-400 font-mono break-all bg-gray-800 p-2 rounded">
+                            TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm
+                        </div>
+                        <button onclick="copyToClipboard('TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm')" class="mt-2 text-xs bg-neon-green text-black px-3 py-1 rounded hover:bg-green-400 transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="usdt-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm" alt="USDT QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-4 mb-6">
+                    <p class="text-yellow-300 text-sm">
+                        <strong>Payment Instructions:</strong><br>
+                        Send exactly <span id="crypto-amount" class="font-bold">$297 USD equivalent</span> to one of the addresses above. Email your payment confirmation (TxID or screenshot) to 
+                        <a href="mailto:payments@cointrader-ai.com" class="text-yellow-100 underline font-semibold">payments@cointrader-ai.com</a>. 
+                        ⚡ Get instant lifetime access + exclusive Telegram group invite within 5 minutes!
+                    </p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="toggleChat()" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold rounded-lg hover:scale-105 transition-transform duration-300">
+                            <span>💬 Live Chat Support</span>
+                        </button>
+                        <a href="mailto:support@cointrader-ai.com" class="inline-flex items-center justify-center px-6 py-3 border-2 border-electric-blue text-electric-blue font-bold rounded-lg hover:bg-electric-blue hover:text-black transition-all duration-300">
+                            <span>📧 Email Support</span>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-300">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                                <span>Live Support Online</span>
+                            </div>
+                            <div>•</div>
+                            <div>Avg Response: 15 min</div>
+                            <div>•</div>
+                            <div>24/7 Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 mb-6 max-w-4xl mx-auto border border-gray-700">
+                    <div class="grid md:grid-cols-4 gap-4 text-center text-sm">
+                        <div>
+                            <div class="text-2xl font-bold text-neon-green">23.1%</div>
+                            <p class="text-gray-400">Avg Monthly Return</p>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-electric-blue">24/7</div>
+                            <p class="text-gray-400">Automated Trading</p>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-accent-purple">1,284</div>
+                            <p class="text-gray-400">Active Traders</p>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400">$14.2M</div>
+                            <p class="text-gray-400">Total Volume</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4 bg-card-bg">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                <span class="gradient-text">Frequently Asked Questions</span>
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-dark-bg rounded-lg border border-border-gray">
+                    <button class="w-full text-left p-6 hover:bg-gray-800 transition-colors duration-300" onclick="toggleFAQ(1)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">How do I install the bot?</h3>
+                            <span class="text-neon-green text-xl" id="faq-icon-1">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-gray-400" id="faq-content-1">
+                        After payment, you'll receive a download link and setup guide. The bot works on Windows, Mac, and Linux. Installation takes 5 minutes.
+                    </div>
+                </div>
+                
+                <div class="bg-dark-bg rounded-lg border border-border-gray">
+                    <button class="w-full text-left p-6 hover:bg-gray-800 transition-colors duration-300" onclick="toggleFAQ(2)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">Can I run it on multiple exchanges?</h3>
+                            <span class="text-neon-green text-xl" id="faq-icon-2">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-gray-400" id="faq-content-2">
+                        Yes! CoinTrader AI supports Binance, Coinbase Pro, KuCoin, and 20+ other exchanges. You can run multiple instances simultaneously.
+                    </div>
+                </div>
+                
+                <div class="bg-dark-bg rounded-lg border border-border-gray">
+                    <button class="w-full text-left p-6 hover:bg-gray-800 transition-colors duration-300" onclick="toggleFAQ(3)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">Is it beginner-friendly?</h3>
+                            <span class="text-neon-green text-xl" id="faq-icon-3">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-gray-400" id="faq-content-3">
+                        Absolutely! No trading experience required. The bot comes with pre-configured strategies that work out of the box. Advanced users can customize everything.
+                    </div>
+                </div>
+                
+                <div class="bg-dark-bg rounded-lg border border-border-gray">
+                    <button class="w-full text-left p-6 hover:bg-gray-800 transition-colors duration-300" onclick="toggleFAQ(4)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-white">What crypto can I pay with?</h3>
+                            <span class="text-neon-green text-xl" id="faq-icon-4">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden p-6 pt-0 text-gray-400" id="faq-content-4">
+                        We accept Bitcoin (BTC), Ethereum (ETH), and USDT (TRC20). Send $149 USD equivalent to any of our wallet addresses above.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-dark-bg border-t border-border-gray">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold gradient-text mb-4">CoinTrader AI</h3>
+                <p class="text-gray-400">Automated crypto trading powered by artificial intelligence</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Company Information</h4>
+                    <div class="space-y-2 text-gray-400 text-sm">
+                        <p>🏢 CoinTrader Technologies LLC</p>
+                        <p>🌍 Registered in Delaware, USA</p>
+                        <p>📞 Business ID: 7834567</p>
+                        <p>📧 legal@cointrader-ai.com</p>
+                        <p>📋 Established: 2021</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Trust & Security</h4>
+                    <div class="space-y-2 text-gray-400 text-sm">
+                        <p>✅ SSL Encrypted (256-bit)</p>
+                        <p>🛡️ SOC 2 Type II Compliant</p>
+                        <p>🔒 Read-Only API Access</p>
+                        <p>📊 Real-time monitoring</p>
+                        <p>💰 $1M Security Insurance</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-6 text-gray-400">
+                <a href="https://t.me/CoinTraderSupport" class="hover:text-neon-green transition-colors font-medium scroll-indicator">💬 Live Support</a>
+                <a href="#" class="hover:text-electric-blue transition-colors font-medium scroll-indicator">📄 Terms of Service</a>
+                <a href="#" class="hover:text-neon-green transition-colors font-medium scroll-indicator">🔒 Privacy Policy</a>
+                <a href="#" class="hover:text-electric-blue transition-colors font-medium scroll-indicator">💰 Refund Policy</a>
+                <a href="#" class="hover:text-neon-green transition-colors font-medium scroll-indicator">🔍 Risk Disclosure</a>
+            </div>
+            
+            <div class="bg-red-900 border border-red-600 rounded-lg p-4 mb-6">
+                <h4 class="text-red-300 font-bold text-sm mb-2">⚠️ Important Risk Disclosure</h4>
+                <p class="text-red-200 text-xs text-left leading-relaxed">
+                    <strong>*Performance Disclaimer:</strong> The 95.7% profitable trades and 23.1% monthly returns shown are based on backtesting and historical data. Past performance does not guarantee future results.<br><br>
+                    <strong>Trading Risks:</strong> Cryptocurrency trading involves substantial risk of loss. Market conditions are unpredictable and losses can exceed initial investment. Only invest funds you can afford to lose completely.<br><br>
+                    <strong>Not Investment Advice:</strong> CoinTrader AI is an automated trading tool. We do not provide investment advice. You are solely responsible for your trading decisions and outcomes.<br><br>
+                    <strong>No Guarantees:</strong> We make no guarantees of profit. Results may vary significantly based on market conditions, settings, and other factors beyond our control.
+                </p>
+            </div>
+            
+            <div class="text-gray-500 text-sm text-center">
+                © 2024 CoinTrader Technologies LLC. All rights reserved. • Business License #7834567 • 🇺🇸 Made in USA
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cryptoPrices = { bitcoin: 43000, ethereum: 2650, tether: 1.00 };
+        let tradingStats = {
+            totalTrades: 1247,
+            winRate: 95.7,
+            profitToday: 1247.82,
+            licensesLeft: 47
+        };
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create better notification
+                const notification = document.createElement('div');
+                notification.innerHTML = '✓ Address copied!';
+                notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-3 rounded-xl font-bold z-50 shadow-lg neon-glow';
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 2000);
+            });
+        }
+
+        function toggleFAQ(num) {
+            const content = document.getElementById(`faq-content-${num}`);
+            const icon = document.getElementById(`faq-icon-${num}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.textContent = '−';
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Load crypto prices
+        async function loadCryptoPrices() {
+            try {
+                const response = await fetch('/api/payment/rates');
+                if (response.ok) {
+                    const rates = await response.json();
+                    cryptoPrices.bitcoin = rates.BTC;
+                    cryptoPrices.ethereum = rates.ETH;
+                }
+            } catch (error) {
+                console.log('Using fallback prices');
+            }
+            updatePriceDisplay();
+        }
+
+        let selectedPlan = { name: 'Complete', price: 297 };
+        
+        function selectPlan(planName) {
+            selectedPlan = { name: planName, price: 297 };
+            
+            document.getElementById('selected-plan-name').textContent = 'CoinTrader AI ' + selectedPlan.name.charAt(0).toUpperCase() + selectedPlan.name.slice(1);
+            document.getElementById('selected-price').textContent = selectedPlan.price;
+            
+            // Show payment section with smooth scroll
+            const paymentSection = document.getElementById('payment-section');
+            paymentSection.style.display = 'block';
+            paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Update crypto amounts
+            updatePriceDisplay();
+            
+            // Add visual feedback
+            const notification = document.createElement('div');
+            notification.innerHTML = `✅ Ready to complete your purchase!`;
+            notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-neon-green to-electric-blue text-black px-6 py-3 rounded-xl font-bold z-50 shadow-lg neon-glow';
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+
+        function updatePriceDisplay() {
+            const price = selectedPlan.price;
+            const btcAmount = (price / cryptoPrices.bitcoin).toFixed(6);
+            const ethAmount = (price / cryptoPrices.ethereum).toFixed(4);
+            const usdtAmount = (price / cryptoPrices.tether).toFixed(2);
+            
+            document.getElementById('live-prices').innerHTML = `
+                BTC: ${btcAmount} BTC ($${cryptoPrices.bitcoin.toLocaleString()}) • 
+                ETH: ${ethAmount} ETH ($${cryptoPrices.ethereum.toLocaleString()}) • 
+                USDT: ${usdtAmount} USDT
+            `;
+            
+            const cryptoAmountEl = document.getElementById('crypto-amount');
+            if (cryptoAmountEl) {
+                cryptoAmountEl.innerHTML = `
+                    ${btcAmount} BTC or ${ethAmount} ETH or ${usdtAmount} USDT
+                `;
+            }
+        }
+
+        // Animate stats
+        function animateStats() {
+            // Slowly increment trading stats
+            tradingStats.totalTrades += Math.floor(Math.random() * 3) + 1;
+            tradingStats.profitToday += Math.random() * 50 + 10;
+            
+            if (Math.random() < 0.1) { // 10% chance to decrease licenses
+                tradingStats.licensesLeft = Math.max(1, tradingStats.licensesLeft - 1);
+            }
+            
+            // Update displays
+            const totalTradesEl = document.getElementById('total-trades');
+            const profitTodayEl = document.getElementById('profit-today');
+            const licensesLeftEl = document.getElementById('licenses-left');
+            
+            if (totalTradesEl) totalTradesEl.textContent = tradingStats.totalTrades.toLocaleString();
+            if (profitTodayEl) profitTodayEl.textContent = `$${tradingStats.profitToday.toFixed(2)}`;
+            if (licensesLeftEl) {
+                licensesLeftEl.textContent = `${tradingStats.licensesLeft} remaining`;
+                if (tradingStats.licensesLeft <= 10) {
+                    licensesLeftEl.className = 'text-red-100 font-bold animate-pulse';
+                }
+            }
+        }
+
+        // Update signal times
+        function updateSignalTimes() {
+            const times = ['2 min ago', '7 min ago', '12 min ago'];
+            for (let i = 1; i <= 3; i++) {
+                const el = document.getElementById(`signal-time-${i}`);
+                if (el) {
+                    const currentTime = parseInt(el.textContent.split(' ')[0]);
+                    el.textContent = `${currentTime + 1} min ago`;
+                }
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize and start updates
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCryptoPrices();
+            updatePriceDisplay();
+            
+            // Add floating support button
+            createSupportButton();
+            
+            // Add progress bar
+            createProgressBar();
+            
+            // Auto-highlight the main CTA button
+            setTimeout(() => {
+                const mainButton = document.querySelector('button[onclick="selectPlan(\'complete\')"]');
+                if (mainButton) {
+                    mainButton.classList.add('ring-2', 'ring-neon-green', 'animate-pulse');
+                }
+            }, 2000);
+            
+            // Update every 30 seconds
+            setInterval(() => {
+                animateStats();
+                updateSignalTimes();
+            }, 30000);
+            
+            // Reload crypto prices every 2 minutes
+            setInterval(loadCryptoPrices, 120000);
+        });
+        
+        function createProgressBar() {
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            document.body.appendChild(progressBar);
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                progressBar.style.width = Math.min(scrolled, 100) + '%';
+            });
+        }
+        
+        function createSupportButton() {
+            const supportBtn = document.createElement('div');
+            supportBtn.innerHTML = `
+                <button onclick="toggleChat()" 
+                   class="fixed bottom-6 right-6 bg-gradient-to-r from-neon-green to-electric-blue text-black font-bold px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-50 flex items-center space-x-2 neon-glow">
+                    <span class="text-xl">💬</span>
+                    <span class="hidden md:inline font-semibold">Need Help?</span>
+                </button>
+            `;
+            document.body.appendChild(supportBtn);
+            
+            // Create chat widget
+            const chatWidget = document.createElement('div');
+            chatWidget.id = 'chat-widget';
+            chatWidget.className = 'fixed bottom-24 right-6 w-96 h-[500px] bg-card-bg rounded-2xl shadow-2xl border border-border-light hidden z-50 flex flex-col glass-morphism';
+            chatWidget.innerHTML = `
+                <div class="bg-gradient-to-r from-neon-green to-electric-blue p-4 rounded-t-2xl flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                        <h3 class="text-black font-bold">CoinTrader AI Support</h3>
+                    </div>
+                    <button onclick="toggleChat()" class="text-black hover:text-gray-800 text-xl">&times;</button>
+                </div>
+                <div class="flex-1 p-4 overflow-y-auto" id="chat-messages">
+                    <div class="bg-gray-800 rounded-lg p-3 mb-4">
+                        <p class="text-gray-300 text-sm">👋 Hi! I'm here to help you get started with CoinTrader AI. How can I assist you today?</p>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <button onclick="sendQuickReply('How does the bot work?')" class="w-full text-left bg-gray-700 hover:bg-gray-600 rounded-lg p-3 text-sm text-gray-300 transition-colors">
+                            🤖 How does the bot work?
+                        </button>
+                        <button onclick="sendQuickReply('What exchanges are supported?')" class="w-full text-left bg-gray-700 hover:bg-gray-600 rounded-lg p-3 text-sm text-gray-300 transition-colors">
+                            🏢 What exchanges are supported?
+                        </button>
+                        <button onclick="sendQuickReply('Is there a money-back guarantee?')" class="w-full text-left bg-gray-700 hover:bg-gray-600 rounded-lg p-3 text-sm text-gray-300 transition-colors">
+                            💰 Is there a money-back guarantee?
+                        </button>
+                        <button onclick="sendQuickReply('How do I make payment?')" class="w-full text-left bg-gray-700 hover:bg-gray-600 rounded-lg p-3 text-sm text-gray-300 transition-colors">
+                            💳 How do I make payment?
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 border-t border-border-light">
+                    <div class="flex space-x-2">
+                        <input type="text" id="chat-input" placeholder="Type your message..." 
+                               class="flex-1 bg-gray-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-neon-green"
+                               onkeypress="if(event.key==='Enter')sendMessage()">
+                        <button onclick="sendMessage()" class="bg-gradient-to-r from-neon-green to-electric-blue text-black px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(chatWidget);
+        }
+        
+        let chatOpen = false;
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const widget = document.getElementById('chat-widget');
+            if (widget) {
+                widget.classList.toggle('hidden');
+                if (chatOpen) {
+                    document.getElementById('chat-input').focus();
+                }
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Simulate response
+            setTimeout(() => {
+                const response = getAutoResponse(message);
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+        
+        function sendQuickReply(question) {
+            addMessage(question, 'user');
+            setTimeout(() => {
+                const response = getAutoResponse(question);
+                addMessage(response, 'bot');
+            }, 500);
+        }
+        
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `mb-3 ${sender === 'user' ? 'text-right' : ''}`;
+            messageDiv.innerHTML = `
+                <div class="inline-block max-w-[80%] ${sender === 'user' ? 'bg-electric-blue text-black' : 'bg-gray-800 text-gray-300'} rounded-lg p-3">
+                    <p class="text-sm">${text}</p>
+                </div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            
+            // Animate hamburger to X
+            const bars = icon.children;
+            if (menu.classList.contains('hidden')) {
+                bars[0].style.transform = 'rotate(0)';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'rotate(0)';
+            } else {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            }
+        }
+        
+        function getAutoResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('how') && lowerMessage.includes('work')) {
+                return "CoinTrader AI uses advanced algorithms to analyze market conditions 24/7. It automatically executes trades based on your selected strategies, managing risk and maximizing profits. Simply connect your exchange API, choose your strategies, and let the bot handle the rest!";
+            } else if (lowerMessage.includes('exchange')) {
+                return "We support 20+ major exchanges including Binance, Coinbase Pro, KuCoin, Kraken, Bybit, and more. You can connect unlimited exchanges with your lifetime license and run multiple strategies simultaneously.";
+            } else if (lowerMessage.includes('guarantee') || lowerMessage.includes('refund')) {
+                return "Yes! We offer a 30-day money-back guarantee. If you're not satisfied with CoinTrader AI for any reason, simply email us within 30 days for a full refund. No questions asked!";
+            } else if (lowerMessage.includes('payment') || lowerMessage.includes('pay')) {
+                return "We accept Bitcoin, Ethereum, and USDT. After clicking 'Start Trading Now', you'll see our wallet addresses. Send $297 worth of crypto and email your transaction ID to payments@cointrader-ai.com. You'll receive access within 5 minutes!";
+            } else if (lowerMessage.includes('telegram')) {
+                return "Our exclusive Telegram group is a special bonus for customers only! After your payment is confirmed, you'll receive an invite link. It's a highly active community of 1,200+ traders sharing strategies and results.";
+            } else if (lowerMessage.includes('install') || lowerMessage.includes('setup')) {
+                return "Installation is super easy! After purchase, you'll receive a download link and step-by-step guide. The bot works on Windows, Mac, and Linux. Most users are up and running in under 5 minutes.";
+            } else {
+                return "I'd be happy to help! For quick answers, try our FAQ section above. For payment assistance, email payments@cointrader-ai.com. Ready to start? Click 'Start Trading Now' to get instant access!";
+            }
+        }
+    </script>
+</body>
+</html>

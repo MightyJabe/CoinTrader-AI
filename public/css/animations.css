@@ -36,6 +36,13 @@
     }
 }
 
+/* Stat number animation class */
+.stat-number {
+    animation: countUp 1s ease-out forwards;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
 /* Scroll animation for exchange logos */
 @keyframes scroll-right {
     0% {
@@ -204,18 +211,18 @@
 
 /* Loading Animations */
 .loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f4f6;
-    border-top: 4px solid var(--primary);
-    border-radius: 50%;
-    animation: rotate 1s linear infinite;
+    width: var(--spacing-10px);
+    height: var(--spacing-10px);
+    border: var(--spacing-px) solid var(--bg-shimmer);
+    border-top: var(--spacing-px) solid var(--primary);
+    border-radius: var(--radius-full);
+    animation: rotate var(--duration-extra-slow) linear infinite;
 }
 
 .shimmer-effect {
     position: relative;
     overflow: hidden;
-    background: #f3f4f6;
+    background: var(--bg-shimmer);
 }
 
 .shimmer-effect::after {
@@ -225,24 +232,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        transparent 100%
-    );
-    animation: shimmer 1.5s infinite;
+    background: var(--bg-gradient-shimmer);
+    animation: shimmer var(--duration-shimmer) infinite;
 }
 
 /* Scroll-triggered animations */
 .scroll-reveal {
-    opacity: 0;
+    opacity: var(--opacity-0);
     transform: translateY(30px);
-    transition: all 0.6s ease-out;
+    transition: all var(--duration-very-slow) ease-out;
 }
 
 .scroll-reveal.visible {
-    opacity: 1;
+    opacity: var(--opacity-100);
     transform: translateY(0);
 }
 

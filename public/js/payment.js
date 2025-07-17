@@ -104,6 +104,40 @@ function checkPaymentStatus() {
 }
 
 /**
+ * Send payment confirmation email
+ */
+function sendPaymentConfirmation(button) {
+    const email = document.getElementById('customer-email').value;
+    const paymentID = document.getElementById('payment-id').textContent;
+    
+    if (!email || !paymentID) {
+        alert('Please generate a payment ID first!');
+        return;
+    }
+    
+    // Show loading state
+    button.innerHTML = '⏳ Sending...';
+    button.disabled = true;
+    
+    // Simulate sending email (in real app, this would call API)
+    setTimeout(() => {
+        button.innerHTML = '✅ Sent!';
+        button.style.backgroundColor = '#10B981';
+        
+        if (window.showNotification) {
+            window.showNotification('Payment confirmation sent! Check your email for next steps.', 'success', 4000);
+        }
+        
+        // Reset button after 5 seconds
+        setTimeout(() => {
+            button.innerHTML = '📧 Send Payment Confirmation Email';
+            button.style.backgroundColor = '';
+            button.disabled = false;
+        }, 5000);
+    }, 2000);
+}
+
+/**
  * Process payment verification (placeholder for real implementation)
  */
 async function verifyPayment(paymentId, txHash, currency) {
@@ -213,3 +247,4 @@ document.addEventListener('DOMContentLoaded', function() {
 window.generatePaymentID = generatePaymentID;
 window.copyPaymentID = copyPaymentID;
 window.checkPaymentStatus = checkPaymentStatus;
+window.sendPaymentConfirmation = sendPaymentConfirmation;

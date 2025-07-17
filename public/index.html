@@ -21,21 +21,29 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'GA_MEASUREMENT_ID');
+
+        // Custom event tracking function
+        function trackEvent(eventName, eventCategory, eventLabel, value) {
+            gtag('event', eventName, {
+                'event_category': eventCategory,
+                'event_label': eventLabel,
+                'value': value
+            });
+        }
     </script>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#2563eb',
-                        'primary-dark': '#1d4ed8',
-                        'secondary': '#64748b',
-                        'secondary-dark': '#475569',
-                        'accent': '#3b82f6',
-                        'accent-dark': '#2563eb',
+                        'primary': '#1e3a5f',
+                        'primary-dark': '#152a45',
+                        'secondary': '#0d7a5f',
+                        'secondary-dark': '#0a5c48',
+                        'accent': '#00d4ff',
+                        'accent-dark': '#00b8e6',
                         'dark-bg': '#f8f9fa',
                         'card-bg': '#ffffff',
                         'glass-bg': 'rgba(255, 255, 255, 0.95)',
@@ -51,238 +59,934 @@
             }
         }
     </script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/components.css">
-    <link rel="stylesheet" href="/css/animations.css">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
     <!-- Progress Bar -->
     <div class="progress-bar"></div>
-
-    <!-- Header -->
-    <nav class="main-header">
-        <div class="nav-container">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <svg class="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="5" r="2" fill="currentColor" />
-                        <circle cx="6" cy="12" r="2" fill="currentColor" />
-                        <circle cx="18" cy="12" r="2" fill="currentColor" />
-                        <circle cx="12" cy="19" r="2" fill="currentColor" />
-                        <path d="m10.5 6.5 -2 4" stroke="currentColor" stroke-width="1.5" />
-                        <path d="m13.5 6.5 2 4" stroke="currentColor" stroke-width="1.5" />
-                        <path d="m8 14 2 3" stroke="currentColor" stroke-width="1.5" />
-                        <path d="m16 14 -2 3" stroke="currentColor" stroke-width="1.5" />
-                    </svg>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- AI Neural Network Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="logo-icon w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" aria-label="CoinTrader AI Logo">
+                            <circle cx="12" cy="5" r="3" fill="currentColor" />
+                            <circle cx="6" cy="12" r="3" fill="currentColor" />
+                            <circle cx="18" cy="12" r="3" fill="currentColor" />
+                            <circle cx="12" cy="19" r="3" fill="currentColor" />
+                            <path d="m10.5 6.5 -2 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="m13.5 6.5 2 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="m8 14 2 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="m16 14 -2 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">
+                        CoinTrader AI
+                    </h1>
                 </div>
-                <div class="brand-text">CoinTrader AI</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#technology" class="text-gray-700 hover:text-primary transition-colors font-medium">AI Technology</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-primary transition-colors font-medium">Pricing</a>
+                    <a href="#security" class="text-gray-700 hover:text-primary transition-colors font-medium">Security</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary transition-colors font-medium">FAQ</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center gap-4">
+                    <a href="#buy-now"
+                        class="hidden md:inline-flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-200">
+                        Get Started
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 focus:outline-none">
+                        <div id="mobile-menu-icon" class="space-y-1">
+                            <div class="w-6 h-0.5 bg-gray-700 transition-transform"></div>
+                            <div class="w-6 h-0.5 bg-gray-700 transition-transform"></div>
+                            <div class="w-6 h-0.5 bg-gray-700 transition-transform"></div>
+                        </div>
+                    </button>
+                </div>
             </div>
-
-            <div class="nav-menu">
-                <a href="#technology" class="nav-link">AI Technology</a>
-                <a href="#buy-now" class="nav-link">Get Started</a>
-                <a href="#security" class="nav-link">Security</a>
-                <a href="#about" class="nav-link">About</a>
-            </div>
-
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
-
-            <a href="#get-started" class="btn-primary">Get Started</a>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu">
-            <a href="#technology" class="nav-link">AI Technology</a>
-            <a href="#buy-now" class="nav-link">Get Started</a>
-            <a href="#security" class="nav-link">Security</a>
-            <a href="#about" class="nav-link">About</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#technology" class="block text-gray-700 hover:text-primary transition-colors font-medium">AI Technology</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-primary transition-colors font-medium">Pricing</a>
+                <a href="#security" class="block text-gray-700 hover:text-primary transition-colors font-medium">Security</a>
+                <a href="#faq" class="block text-gray-700 hover:text-primary transition-colors font-medium">FAQ</a>
+                <a href="#buy-now" class="block bg-primary text-white px-6 py-2.5 rounded-lg font-medium text-center">Get Started</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Risk Warning -->
+
+    <!-- Regulatory Notice -->
     <div class="bg-gray-100 text-center py-2 px-4 border-b border-gray-200">
         <div class="max-w-6xl mx-auto">
             <p class="text-gray-600 text-xs">
                 Risk Warning: Trading cryptocurrencies involves substantial risk of loss. Past performance does not
                 guarantee future results.
-                <a href="#risk-disclosure" class="text-blue-600 hover:underline ml-1">Full Risk Disclosure</a>
+                <a href="#risk-disclosure" class="text-primary hover:underline ml-1">Full Risk Disclosure</a>
             </p>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="hero-background"></div>
-        <div class="background-particles"></div>
-        
-        <div class="hero-content">
-            <div class="hero-badge">
-                <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                <span class="text-blue-700 text-sm font-medium">Advanced Machine Learning Technology</span>
+    <section class="min-h-screen flex flex-col justify-center px-4 py-16 pt-24 relative overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gray-800"></div>
+        <!-- Animated background particles -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl animate-pulse">
+            </div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full filter blur-3xl animate-pulse"
+                style="animation-delay: 2s;"></div>
+        </div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="mb-8">
+                <div class="inline-flex items-center px-6 py-3 bg-white bg-opacity-20 rounded-lg mb-8 border border-white border-opacity-30">
+                    <div class="w-2 h-2 bg-accent rounded-full mr-3"></div>
+                    <span class="text-white text-sm font-medium">Advanced Machine Learning Technology</span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white">
+                    AI Trading Bot That<br>
+                    <span class="text-accent">Actually Works</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-gray-200 mb-6 max-w-4xl mx-auto font-normal leading-relaxed">
+                    Advanced AI that learns from market patterns and executes profitable trades automatically. Turn your
+                    crypto into passive income starting today.
+                </p>
+
+                <p class="text-lg text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+                    Our intelligent system analyzes market data continuously, making smart trading decisions 24/7 so you don't have to.
+                    Professional-grade trading tools made simple for everyone.
+                </p>
+
             </div>
 
-            <h1 class="hero-title">
-                AI Trading Bot That<br>
-                <span class="text-blue-600">Actually Works</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Advanced AI that learns from the markets and makes profitable trades while you sleep. Turn your
-                crypto into passive income starting today.
-            </p>
-
-            <p class="hero-description">
-                Our AI analyzes thousands of market signals every second, executing profitable trades automatically.
-                Start earning passive income while you sleep, work, or enjoy life.
-            </p>
-
-            <div class="hero-cta">
-                <a href="#get-started" class="btn-primary">Get Started Now</a>
-                <a href="#technology" class="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold text-lg rounded-lg hover:border-blue-600 hover:text-blue-600 transition-all duration-200">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <a href="#buy-now"
+                    class="bg-accent hover:bg-accent-dark text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg">
+                    Get Started Now
+                </a>
+                <a href="#technology"
+                    class="px-8 py-3 border-2 border-white border-opacity-30 text-white font-semibold text-lg rounded-lg hover:border-accent hover:text-accent transition-all duration-200">
                     See How It Works
                 </a>
             </div>
 
             <!-- Security Notice -->
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-4xl mx-auto mb-8">
+            <div class="bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg p-4 max-w-4xl mx-auto mb-8">
                 <div class="flex items-center justify-center gap-3 text-center">
-                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-gray-800 font-medium">API-Only Integration: Your funds remain secure on your
-                        exchange</span>
-                    <span class="text-gray-600">• Read-only market access • No withdrawal permissions</span>
+                    <span class="text-white font-medium">API-Only Integration: Your funds stay safe on your exchange</span>
+                    <span class="text-gray-300">• Trading permissions only • No withdrawal access • Bank-level security</span>
                 </div>
             </div>
 
             <!-- Exchange Integration -->
-            <div class="exchange-carousel">
-                <p class="text-gray-900 text-xl mb-2 text-center font-semibold">Exchange Integration</p>
-                <p class="text-gray-600 text-sm mb-8 text-center">Compatible with 20+ major cryptocurrency exchanges via
+            <div class="mb-16 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-8 border border-white border-opacity-20">
+                <p class="text-white text-xl mb-2 text-center font-semibold">Exchange Integration</p>
+                <p class="text-gray-300 text-sm mb-8 text-center">Compatible with 20+ major cryptocurrency exchanges via
                     secure API connections</p>
-                <div class="exchange-track">
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/binance.com" alt="Binance" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Binance</span>
+                <div class="exchange-carousel overflow-hidden bg-transparent">
+                    <div class="exchange-track">
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/binance.com" alt="Binance"
+                                loading="lazy" />
+                            <span class="text-base text-gray-300 font-medium">Binance</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Coinbase</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/kraken.com" alt="Kraken"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Kraken</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/kucoin.com" alt="KuCoin"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">KuCoin</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bybit.com" alt="Bybit" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Bybit</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/okx.com" alt="OKX" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">OKX</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/gate.io" alt="Gate.io" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Gate.io</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/huobi.com" alt="Huobi" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Huobi</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/crypto.com" alt="Crypto.com"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Crypto.com</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/mexc.com" alt="MEXC" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">MEXC</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bitget.com" alt="Bitget"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Bitget</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/poloniex.com" alt="Poloniex"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Poloniex</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/dydx.exchange" alt="dYdX"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">dYdX</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/gemini.com" alt="Gemini"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Gemini</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/cex.io" alt="CEX.IO" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">CEX.IO</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bitfinex.com" alt="Bitfinex"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Bitfinex</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bitstamp.net" alt="Bitstamp"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Bitstamp</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bingx.com" alt="BingX" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">BingX</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/hitbtc.com" alt="HitBTC"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">HitBTC</span>
+                        </div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/binance.com" alt="Binance"
+                                loading="lazy" />
+                            <span class="text-base text-gray-300 font-medium">Binance</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Coinbase</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/kraken.com" alt="Kraken"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Kraken</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/kucoin.com" alt="KuCoin"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">KuCoin</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/bybit.com" alt="Bybit" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">Bybit</span>
+                        </div>
+                        <div class="exchange-logo">
+                            <img src="https://logo.clearbit.com/okx.com" alt="OKX" class="w-12 h-12 object-contain"
+                                loading="lazy" />
+                            <span class="text-xs text-gray-300 font-medium">OKX</span>
+                        </div>
                     </div>
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Coinbase</span>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
+                <div class="text-center p-6 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg border border-white border-opacity-20">
+                    <div class="text-2xl font-bold text-accent mb-2">20+</div>
+                    <div class="text-sm text-gray-300">Supported Exchanges</div>
+                </div>
+                <div class="text-center p-6 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg border border-white border-opacity-20">
+                    <div class="text-2xl font-bold text-accent mb-2">99.9%</div>
+                    <div class="text-sm text-gray-300">System Uptime</div>
+                </div>
+                <div class="text-center p-6 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg border border-white border-opacity-20">
+                    <div class="text-2xl font-bold text-accent mb-2">24/7</div>
+                    <div class="text-sm text-gray-300">AI Trading</div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-6 max-w-3xl mx-auto border border-white border-opacity-20">
+                    <div class="text-center mb-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Your Lifetime Membership Includes:</h3>
                     </div>
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/kraken.com" alt="Kraken" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Kraken</span>
-                    </div>
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/kucoin.com" alt="KuCoin" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">KuCoin</span>
-                    </div>
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/bybit.com" alt="Bybit" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Bybit</span>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/binance.com" alt="Binance" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Binance</span>
-                    </div>
-                    <div class="exchange-logo">
-                        <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase" class="w-12 h-12 object-contain" loading="lazy" />
-                        <span class="text-xs text-gray-600 font-medium">Coinbase</span>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-secondary rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-secondary font-medium">24/7 AI Trading</span>
+                            <span class="text-xs text-gray-300 mt-1">Never stops working</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-accent rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-accent font-medium">Free Support Forever</span>
+                            <span class="text-xs text-gray-300 mt-1">Lifetime assistance</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="w-3 h-3 bg-accent rounded-full mb-2 animate-pulse"></span>
+                            <span class="text-accent font-medium">VIP Community Access</span>
+                            <span class="text-xs text-gray-300 mt-1">Exclusive member group</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="section bg-white" id="technology">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="gradient-text">How It Works</span>
+    <!-- AI Technology Section -->
+    <section id="technology" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Professional Trading</span>
+                    <span class="text-gray-800"> Automation Tools</span>
                 </h2>
-                <p class="section-subtitle">
-                    Simple setup, smart trading. Get started in minutes with our AI-powered system.
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    Advanced algorithmic trading system that executes your pre-configured strategies 
+                    automatically across multiple cryptocurrency exchanges.
                 </p>
             </div>
 
-            <div class="feature-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <!-- AI Technology Features -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white rounded-lg p-8 border border-gray-200">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Connect Exchange</h3>
-                    <p class="text-gray-600">
-                        Link your exchange account with read-only API keys. Your funds stay safe on your exchange.
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">24/7 Automated Trading</h3>
+                    <p class="text-gray-600">Advanced algorithms analyze market data continuously to execute trades based on
+                        pre-configured strategies. Operates around the clock without human intervention.</p>
+                </div>
+                <div class="bg-white rounded-lg p-8 border border-gray-200">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Protects Your Money</h3>
+                    <p class="text-gray-600">Built-in risk management tools help limit exposure through position sizing,
+                        stop-loss orders, and portfolio allocation controls you can configure.</p>
+                </div>
+                <div class="bg-white rounded-lg p-8 border border-gray-200">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Market Analysis Tools</h3>
+                    <p class="text-gray-600">Processes market data and technical indicators to identify potential trading
+                        opportunities based on your selected strategy parameters.</p>
+                </div>
+            </div>
+
+            <!-- Technical Performance Metrics -->
+            <div class="bg-white rounded-lg p-8 border border-gray-200">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Technical Specifications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-semibold text-primary mb-2">256-bit</div>
+                        <div class="text-sm text-gray-600">SSL Encryption</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-semibold text-primary mb-2">API-Only</div>
+                        <div class="text-sm text-gray-600">Trading Access Only</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-semibold text-primary mb-2">20+</div>
+                        <div class="text-sm text-gray-600">Exchange Support</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-semibold text-primary mb-2">24/7</div>
+                        <div class="text-sm text-gray-600">System Operation</div>
+                    </div>
+                </div>
+                <div class="mt-8 p-6 bg-red-50 border-2 border-red-200 rounded-lg">
+                    <p class="text-sm text-gray-800 text-center font-medium">
+                        <strong class="text-red-600">Important Risk Warning:</strong> Cryptocurrency trading involves substantial risk of loss. 
+                        Past performance does not guarantee future results. This software provides automated execution tools only 
+                        and does not constitute investment advice. Only trade with funds you can afford to lose.
                     </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- How It Works Section -->
+    <section id="demo" class="py-20 px-4 bg-gray-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">
+                How It <span class="text-accent">Works</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Simple setup process to get the automated trading system connected to your exchange account.
+            </p>
+
+            <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div
+                        class="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 shadow-lg hover:border-accent hover:shadow-xl transition-all duration-300 hover-lift h-full flex flex-col backdrop-blur-sm">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-accent to-accent-dark rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">1</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">Purchase & Download</h3>
+                        <p class="text-gray-300 text-sm flex-grow">Purchase the software and receive your download link with
+                            detailed setup instructions.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </div>
                 </div>
 
-                <div class="feature-card scroll-reveal">
-                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div
+                        class="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 shadow-lg hover:border-secondary hover:shadow-xl transition-all duration-300 hover-lift h-full flex flex-col backdrop-blur-sm">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary-dark rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">2</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">Connect Your Exchange</h3>
+                        <p class="text-gray-300 text-sm flex-grow">Link your exchange account using API keys with trading
+                            permissions but no withdrawal access.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">AI Analyzes Markets</h3>
-                    <p class="text-gray-600">
-                        Our AI processes thousands of market signals, news, and patterns to identify profitable opportunities.
-                    </p>
                 </div>
 
-                <div class="feature-card scroll-reveal">
-                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div
+                        class="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 shadow-lg hover:border-accent hover:shadow-xl transition-all duration-300 hover-lift h-full flex flex-col backdrop-blur-sm">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-accent to-accent-dark rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">3</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">Configure Settings</h3>
+                        <p class="text-gray-300 text-sm flex-grow">Set your risk parameters, trading amounts, asset selection,
+                            and strategy preferences.</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Automated Trading</h3>
-                    <p class="text-gray-600">
-                        The bot executes trades automatically 24/7 based on AI predictions and risk management rules.
-                    </p>
                 </div>
+
+                <!-- Step 4 -->
+                <div class="relative">
+                    <div
+                        class="bg-gradient-to-br from-secondary/20 to-primary/20 rounded-2xl p-6 border-2 border-secondary hover:scale-105 transition-all duration-300 h-full flex flex-col backdrop-blur-sm">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                            <span class="text-2xl font-bold text-white">4</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2 text-white">Monitor & Trade</h3>
+                        <p class="text-gray-300 text-sm font-medium flex-grow">Activate the system to execute your
+                            strategies automatically while you monitor performance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="mt-12 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 text-center border border-white border-opacity-20 backdrop-blur-sm">
+                    <svg class="icon-lightning text-accent mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z">
+                        </path>
+                    </svg>
+                    <h4 class="font-semibold text-white mb-1">Guided Setup</h4>
+                    <p class="text-gray-300 text-sm">Comprehensive documentation and setup assistance</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 text-center border border-white border-opacity-20 backdrop-blur-sm">
+                    <svg class="icon-shield text-secondary mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <h4 class="font-semibold text-white mb-1">Secure Integration</h4>
+                    <p class="text-gray-300 text-sm">Trading permissions only - no withdrawal access</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 text-center border border-white border-opacity-20 backdrop-blur-sm">
+                    <svg class="icon-chat text-accent mx-auto mb-2" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                        </path>
+                    </svg>
+                    <h4 class="font-semibold text-white mb-1">Customer Support</h4>
+                    <p class="text-gray-300 text-sm">Email support and community access available</p>
+                </div>
+            </div>
+            
+            <!-- Risk Reminder -->
+            <div class="mt-8 max-w-3xl mx-auto text-center">
+                <p class="text-gray-400 text-sm">
+                    <strong>Remember:</strong> Always monitor your trading activity and only trade with funds you can afford to lose. 
+                    You maintain full control and can stop trading at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Preview Section -->
+    <section class="py-20 px-4 bg-gradient-to-br from-dark-bg via-primary/5 to-secondary/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Software Features</span> Overview
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Key features and capabilities of the CoinTrader AI trading automation system.
+                </p>
+            </div>
+
+            <!-- Features Overview -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Core System Capabilities</h3>
+                    <p class="text-gray-600">The software includes these key features for automated trading:</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Strategy Execution</h4>
+                        <p class="text-sm text-gray-600">Automated execution of pre-configured trading strategies</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Risk Management</h4>
+                        <p class="text-sm text-gray-600">Position sizing and stop-loss controls</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Exchange Integration</h4>
+                        <p class="text-sm text-gray-600">API connections to 20+ cryptocurrency exchanges</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Performance Tracking</h4>
+                        <p class="text-sm text-gray-600">Monitor trades and system performance</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Configuration Panel</h4>
+                        <p class="text-sm text-gray-600">Adjust settings and trading parameters</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Activity Logs</h4>
+                        <p class="text-sm text-gray-600">Detailed logs of all system activities</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Screenshots Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+                    <div class="bg-white rounded-lg p-4 mb-4 border border-gray-200 shadow-sm">
+                        <div class="text-center py-8">
+                            <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                            <div class="text-xs text-gray-600">Performance Analytics</div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Performance Analytics</h3>
+                    <p class="text-sm text-gray-600">Monitor your trading activity with detailed logs and performance
+                        metrics to track system operations.</p>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+                    <div class="bg-white rounded-lg p-4 mb-4 border border-gray-200 shadow-sm">
+                        <div class="text-center py-8">
+                            <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                                </path>
+                            </svg>
+                            <div class="text-xs text-gray-600">Strategy Configuration</div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Strategy Configuration</h3>
+                    <p class="text-sm text-gray-600">Customize trading parameters and risk settings. Choose from
+                        pre-configured strategies or create your own.</p>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+                    <div class="bg-white rounded-lg p-4 mb-4 border border-gray-200 shadow-sm">
+                        <div class="text-center py-8">
+                            <svg class="w-16 h-16 text-accent mx-auto mb-4" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                            <div class="text-xs text-gray-600">Risk Management</div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Risk Management</h3>
+                    <p class="text-sm text-gray-600">Configurable risk controls including position sizing limits,
+                        stop-loss orders, and portfolio allocation settings.</p>
+                </div>
+            </div>
+
+            <!-- Mobile App Preview -->
+            <div class="text-center">
+                <div
+                    class="inline-flex items-center bg-primary/10 border border-primary/30 rounded-full px-6 py-3 mb-8">
+                    <svg class="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path>
+                    </svg>
+                    <span class="text-primary font-semibold">Desktop & Mobile Compatible</span>
+                </div>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                    Access your trading system from desktop or mobile devices. Monitor system status and performance on the go.
+                </p>
+                <a href="#buy-now" class="btn-primary inline-flex items-center text-lg font-bold">
+                    <span>Get Started Now</span>
+                    <span class="ml-2 text-xl">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder/Team Section -->
+    <section class="py-20 px-4 bg-gradient-to-br from-dark-bg to-card-bg">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Technical</span> Implementation
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Professional trading automation software built with modern development practices and security standards.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Technology Stack -->
+                <div class="bg-white rounded-lg p-8 border border-gray-200">
+                    <div class="flex items-start gap-6">
+                        <div class="w-20 h-20 rounded-lg bg-primary/10 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Algorithmic Trading System</h3>
+                            <p class="text-primary font-semibold mb-3">Technical Analysis</p>
+                            <p class="text-gray-600 mb-4">
+                                The system uses algorithmic strategies to analyze market data and execute trades based on
+                                pre-configured parameters and technical indicators.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-primary/10 text-primary-dark rounded-full text-sm">Technical Analysis</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary-dark rounded-full text-sm">Automated Execution</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary-dark rounded-full text-sm">Strategy Based</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Infrastructure -->
+                <div class="bg-white rounded-lg p-8 border border-gray-200">
+                    <div class="flex items-start gap-6">
+                        <div class="w-20 h-20 rounded-lg bg-green-100 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Security Architecture</h3>
+                            <p class="text-green-600 font-semibold mb-3">API Integration</p>
+                            <p class="text-gray-600 mb-4">
+                                Your funds remain in your exchange account. The system uses API keys with trading permissions
+                                but no withdrawal capabilities for your security.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Trading-Only Access</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">No Withdrawals</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Exchange Custody</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Stats -->
+            <div class="glass-morphism rounded-2xl p-8">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-2xl font-semibold text-gray-800 mb-2">99.7%</div>
+                        <div class="text-gray-600">API Uptime</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-semibold text-primary mb-2">&lt;50ms</div>
+                        <div class="text-gray-600">Response Latency</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-semibold text-green-600 mb-2">256-bit</div>
+                        <div class="text-gray-600">Encryption</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-semibold text-purple-600 mb-2">20+</div>
+                        <div class="text-gray-600">Exchange APIs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Statement -->
+            <div class="text-center mt-16">
+                <div class="max-w-4xl mx-auto bg-white rounded-lg p-8 border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Technical Approach</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Our system uses established technical analysis methods and algorithmic strategies to execute trades.
+                        While we aim to simplify the trading process, results depend on market conditions and your configuration.
+                    </p>
+                    <div class="mt-6 text-primary font-semibold">Algorithmic Trading Made Accessible</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Comparison Table Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                <span class="gradient-text">Why CoinTrader AI</span>
+                <span class="text-gray-800"> Is Your Best Choice</span>
+            </h2>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+                See how CoinTrader AI gives you significant advantages over manual trading and basic bots.
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-4 px-4"></th>
+                            <th class="text-center py-4 px-4">
+                                <div class="text-xl font-bold text-primary">CoinTrader AI</div>
+                                <div class="text-sm text-gray-400">Advanced Trading System</div>
+                            </th>
+                            <th class="text-center py-4 px-4">
+                                <div class="text-xl font-bold text-gray-400">Manual Trading</div>
+                                <div class="text-sm text-gray-500">Do It Yourself</div>
+                            </th>
+                            <th class="text-center py-4 px-4">
+                                <div class="text-xl font-bold text-gray-400">Other Bots</div>
+                                <div class="text-sm text-gray-500">Basic Automation</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Trading Hours</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary font-bold">24/7 Never Sleeps</span></td>
+                            <td class="text-center py-4 px-4 text-gray-500">Only when you're awake</td>
+                            <td class="text-center py-4 px-4 text-gray-500">24/7 (if it doesn't break)</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Smart Decisions</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary text-2xl">✓</span></td>
+                            <td class="text-center py-4 px-4"><span class="text-gray-500 text-2xl">✗</span></td>
+                            <td class="text-center py-4 px-4"><span class="text-orange-500 text-2xl">▲</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Market Analysis</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary font-bold">Advanced Analytics
+                                    Engine</span></td>
+                            <td class="text-center py-4 px-4 text-gray-500">Your own research</td>
+                            <td class="text-center py-4 px-4 text-gray-500">Basic rules only</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Risk Management</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary font-bold">Professional Risk
+                                    Protection</span></td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-gray-500">Your own discipline</div>
+                                <div class="text-xs text-red-400">Emotions get in the way</div>
+                            </td>
+                            <td class="text-center py-4 px-4"><span class="text-gray-500">Basic stop-loss</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Setup Difficulty</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary font-bold">5-Minute Setup</span>
+                                <div class="text-xs text-gray-600">Connect exchange → Start trading instantly</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-gray-500">Very Complex</div>
+                                <div class="text-xs text-gray-500">Years to learn properly</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-gray-500">100+ Settings</div>
+                                <div class="text-xs text-gray-500">Configuration nightmare</div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Support</td>
+                            <td class="text-center py-4 px-4"><span class="text-secondary font-bold">Expert Support +
+                                    Active Community</span></td>
+                            <td class="text-center py-4 px-4 text-gray-500">YouTube tutorials</td>
+                            <td class="text-center py-4 px-4 text-gray-500">Basic email support</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Price</td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-secondary font-bold text-xl">$89-$389</div>
+                                <div class="text-xs text-gray-600">One-time payment</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-gray-500">Free</div>
+                                <div class="text-xs text-red-400">+ huge time investment</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-gray-500">$50-200/month</div>
+                                <div class="text-xs text-gray-500">Forever subscription</div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 font-medium">Risk Level</td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-secondary font-bold">Controlled</div>
+                                <div class="text-xs text-gray-600">Advanced risk management built-in</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-orange-400 font-bold">Variable</div>
+                                <div class="text-xs text-gray-500">Depends on experience and discipline</div>
+                            </td>
+                            <td class="text-center py-4 px-4">
+                                <div class="text-orange-400">Moderate to High</div>
+                                <div class="text-xs text-gray-500">Depends on your settings</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="#buy-now" class="btn-primary inline-flex items-center text-lg font-bold"
+                    onclick="trackEvent('cta_click', 'comparison', 'get_started_now')">
+                    <span>Get Started Now</span>
+                    <span class="ml-2 text-xl">→</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Pricing Plans Section -->
-    <section id="buy-now" class="section bg-gray-50">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
+    <section id="buy-now" class="py-20 px-4 bg-white">
+    <div id="pricing"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
                     <span class="gradient-text">Choose Your Plan</span>
                 </h2>
-                <p class="section-subtitle">
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
                     One-time payment. Lifetime access. No subscriptions.
                 </p>
             </div>
 
-            <!-- Pricing Grid -->
-            <div class="pricing-grid">
+            <!-- Tiered Pricing Plans -->
+            <div class="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+
                 <!-- Starter Plan -->
-                <div class="pricing-card">
-                    <div class="text-center mb-8">
+                <div
+                    class="bg-white rounded-2xl p-8 border-2 border-gray-300 hover:border-gray-400 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                        <div class="bg-gray-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">
+                            STARTER
+                        </div>
+                    </div>
+                    <div class="text-center mb-8 mt-4">
                         <div class="w-16 h-16 bg-gray-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.84L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
+                                <path
+                                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.84L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z">
+                                </path>
                             </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-3">Starter</h3>
-                        <p class="text-gray-600 mb-6">Great for trying out AI trading</p>
-                        <div class="text-5xl font-black text-gray-800 mb-2">$89</div>
-                        <p class="text-gray-600">One-time payment</p>
+                        <p class="text-gray-600 mb-6">Great for trying out algorithmic trading</p>
+                        <div class="pricing-display">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <div class="text-5xl font-bold text-gray-800">$89</div>
+                            </div>
+                            <p class="text-gray-600">One-time payment</p>
+                        </div>
                     </div>
 
                     <div class="space-y-4 mb-8 flex-grow">
@@ -314,82 +1018,143 @@
                                 <p class="text-xs text-gray-600">We'll help you get set up</p>
                             </div>
                         </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-gray-600 mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">No Trading Limits</strong>
+                                <p class="text-xs text-gray-600">Trade with any amount you want</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <button onclick="selectPlan('starter')" class="w-full bg-gray-600 hover:bg-gray-700 text-white py-4 rounded-xl font-bold text-lg transition-all duration-300 mt-auto shadow-lg hover:shadow-xl">
+                    <button onclick="selectPlan('starter')"
+                        class="w-full bg-gray-600 hover:bg-gray-700 text-white py-4 rounded-xl font-bold text-lg transition-all duration-300 mt-auto shadow-lg hover:shadow-xl">
                         Choose Starter
                     </button>
                 </div>
 
                 <!-- Professional Plan (Most Popular) -->
-                <div class="pricing-card featured">
+                <div
+                    class="bg-white rounded-2xl p-8 border-2 border-primary relative hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                        <div
+                            class="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">
+                            <svg class="inline w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                                </path>
+                            </svg>
+                            MOST POPULAR
+                        </div>
+                    </div>
+
                     <div class="text-center mb-8 mt-4">
-                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                                <path
+                                    d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
+                                </path>
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-3">Pro</h3>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">Pro</h3>
                         <p class="text-gray-600 text-lg mb-6">Most popular choice</p>
-                        <div class="text-6xl font-black text-blue-600 mb-2">$189</div>
-                        <p class="text-gray-600 text-lg">One-time payment</p>
+
+                        <div class="pricing-display">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <div class="text-5xl font-bold text-primary">$189</div>
+                            </div>
+                            <p class="text-gray-600 text-lg">One-time payment</p>
+                        </div>
                     </div>
 
                     <div class="space-y-4 mb-8 flex-grow">
                         <div class="flex items-start text-gray-700">
-                            <span class="text-blue-600 mr-3 mt-1">✓</span>
+                            <span class="text-primary mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">15+ Exchanges</strong>
                                 <p class="text-xs text-gray-600">Access to all major trading platforms</p>
                             </div>
                         </div>
                         <div class="flex items-start text-gray-700">
-                            <span class="text-blue-600 mr-3 mt-1">✓</span>
+                            <span class="text-primary mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">8 Trading Strategies</strong>
-                                <p class="text-xs text-gray-600">More ways to make money from the markets</p>
+                                <p class="text-xs text-gray-600">More trading strategies to choose from</p>
                             </div>
                         </div>
                         <div class="flex items-start text-gray-700">
-                            <span class="text-blue-600 mr-3 mt-1">✓</span>
+                            <span class="text-primary mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">Detailed Reports</strong>
-                                <p class="text-xs text-gray-600">See exactly how much you're making</p>
+                                <p class="text-xs text-gray-600">Track your trading performance</p>
                             </div>
                         </div>
                         <div class="flex items-start text-gray-700">
-                            <span class="text-blue-600 mr-3 mt-1">✓</span>
+                            <span class="text-primary mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">Fast Support</strong>
                                 <p class="text-xs text-gray-600">Get help within 12 hours</p>
                             </div>
                         </div>
                         <div class="flex items-start text-gray-700">
-                            <span class="text-blue-600 mr-3 mt-1">✓</span>
+                            <span class="text-primary mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">Trader Community</strong>
                                 <p class="text-xs text-gray-600">Chat with other users in our group</p>
                             </div>
                         </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-primary mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">Phone Alerts</strong>
+                                <p class="text-xs text-gray-600">Get notified when the bot makes trades</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-primary mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">No Trading Limits</strong>
+                                <p class="text-xs text-gray-600">Trade with any amount you want</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <button onclick="selectPlan('professional')" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl mt-auto">
+                    <button onclick="selectPlan('professional')"
+                        class="w-full py-5 bg-primary hover:bg-primary-dark text-white font-bold text-xl rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl mt-auto">
                         Choose Pro →
                     </button>
+
                 </div>
 
                 <!-- Complete Plan -->
-                <div class="pricing-card">
-                    <div class="text-center mb-8">
-                        <div class="w-16 h-16 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                <div
+                    class="bg-gradient-to-br from-gold/5 to-gold-dark/5 rounded-2xl p-8 border-2 border-gold hover:border-gold-dark hover:shadow-xl transition-all duration-300 flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                        <div class="bg-gradient-to-r from-gold to-gold-dark text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">
+                            <svg class="inline w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                            BEST VALUE
+                        </div>
+                    </div>
+                    <div class="text-center mb-8 mt-4">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Complete</h3>
-                        <p class="text-gray-600 mb-6">All features unlocked</p>
-                        <div class="text-5xl font-black text-gold mb-2">$389</div>
-                        <p class="text-gray-600">One-time payment</p>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-3">Complete</h3>
+                        <p class="text-gray-600 text-lg mb-6">Everything you need to succeed</p>
+                        <div class="pricing-display">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <div class="text-5xl font-bold text-gold">$389</div>
+                            </div>
+                            <p class="text-gray-600 text-lg">One-time payment</p>
+                        </div>
                     </div>
 
                     <div class="space-y-4 mb-8 flex-grow">
@@ -418,24 +1183,75 @@
                             <span class="text-gold mr-3 mt-1">✓</span>
                             <div>
                                 <strong class="text-gray-800">Priority Support</strong>
-                                <p class="text-xs text-gray-600">Get help within 4 hours + direct dev access</p>
+                                <p class="text-xs text-gray-600">Get help within 4 hours + premium support</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-gold mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">VIP Community</strong>
+                                <p class="text-xs text-gray-600">Private group + exclusive community access</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-gold mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">API Access</strong>
+                                <p class="text-xs text-gray-600">Connect your own tools and apps</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-gold mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">New Strategies First</strong>
+                                <p class="text-xs text-gray-600">Early access to new trading strategies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start text-gray-700">
+                            <span class="text-gold mr-3 mt-1">✓</span>
+                            <div>
+                                <strong class="text-gray-800">No Trading Limits</strong>
+                                <p class="text-xs text-gray-600">Trade with any amount you want</p>
                             </div>
                         </div>
                     </div>
 
-                    <button onclick="selectPlan('complete')" class="w-full bg-gradient-to-r from-gold to-gold-dark text-white py-4 rounded-xl font-bold text-lg transition-all duration-300 mt-auto shadow-lg hover:shadow-xl">
+                    <button onclick="selectPlan('complete')"
+                        class="w-full bg-gradient-to-r from-gold to-gold-dark text-white py-5 rounded-xl font-bold text-xl transition-all duration-300 mt-auto shadow-lg hover:shadow-xl transform hover:scale-105">
                         Get Everything →
                     </button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Refund Policy Section -->
-    <section class="section bg-white">
-        <div class="container max-w-4xl">
-            <div class="bg-gray-50 rounded-2xl p-8 border-2 border-trust-green">
-                <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Our Refund Policy</h3>
+            <!-- Risk-Free Guarantee -->
+            <div class="text-center mb-16">
+                <div
+                    class="bg-gradient-to-r from-trust-green/5 via-primary/5 to-secondary/5 border-2 border-trust-green/30 rounded-xl p-8 max-w-4xl mx-auto">
+                    <div class="flex items-center justify-center mb-4">
+                        <svg class="w-12 h-12 text-trust-green mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a8 8 0 100 16 8 8 0 000-16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">30-Day Money-Back Guarantee</h3>
+                            <p class="text-gray-600 text-sm">Try it for 30 days. If you don't like it, we'll refund your
+                                money.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 max-w-2xl mx-auto">
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            <strong class="text-primary">Simple guarantee:</strong> Use CoinTrader AI for 30 days. If
+                            you're not happy with it for any reason, just email us and we'll give you a full refund.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Clear Refund Policy Section -->
+            <div class="bg-gray-50 rounded-2xl p-8 mb-16 max-w-4xl mx-auto border-2 border-trust-green">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Our Refund Policy</h3>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
                         <h4 class="text-xl font-bold text-trust-green mb-4 flex items-center">
@@ -501,203 +1317,238 @@
                     </p>
                 </div>
             </div>
+
+
+            <!-- Dynamic Payment Section -->
+            <div id="payment-section"
+                class="glass-morphism rounded-3xl p-10 border-2 border-primary primary-glow max-w-4xl mx-auto"
+                style="display: none;">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-semibold mb-4">
+                        Complete Your <span id="selected-plan-name" class="gradient-text">CoinTrader AI</span> Purchase
+                    </h3>
+                    <div class="text-5xl font-bold text-secondary mb-2">
+                        $<span id="selected-price">297</span>
+                    </div>
+                    <div class="text-xl text-gray-400 mb-4">
+                        One-Time Payment • Lifetime Access
+                    </div>
+                    <div class="text-lg text-gray-800 mb-4 font-medium">Crypto Payments Only: BTC, ETH, USDT, ADA, DOT,
+                        MATIC</div>
+
+                    <div class="bg-primary-dark border border-primary rounded-lg p-4 mb-4">
+                        <p class="text-accent text-sm">
+                            <svg class="icon-lightning text-accent inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z">
+                                </path>
+                            </svg>
+                            <strong>Current Crypto Prices:</strong><br>
+                            <span id="live-prices" class="flex items-center">
+                                <svg class="animate-spin h-4 w-4 text-accent mr-2" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                Loading live rates...
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                        <div class="mb-2">
+                            <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                        </div>
+                        <div class="font-semibold text-gray-800 mb-2">Bitcoin</div>
+                        <div
+                            class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
+                            bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                        </div>
+                        <button onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')"
+                            class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="btc-qr"
+                                src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+                                alt="Bitcoin QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                        <div class="mb-2">
+                            <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                        </div>
+                        <div class="font-semibold text-gray-800 mb-2">Ethereum</div>
+                        <div
+                            class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
+                            0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5
+                        </div>
+                        <button onclick="copyToClipboard('0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5')"
+                            class="mt-2 text-xs bg-primary text-white px-3 py-1 rounded hover:bg-primary-dark transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="eth-qr"
+                                src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5"
+                                alt="Ethereum QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                        <div class="mb-2">
+                            <img src="https://assets.coingecko.com/coins/images/325/large/Tether.png" alt="USDT"
+                                class="w-12 h-12 object-contain" loading="lazy" />
+                        </div>
+                        <div class="font-semibold text-gray-800 mb-2">USDT (TRC20)</div>
+                        <div
+                            class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
+                            TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm
+                        </div>
+                        <button onclick="copyToClipboard('TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm')"
+                            class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
+                            Copy Address
+                        </button>
+                        <div class="mt-4 flex justify-center">
+                            <img id="usdt-qr"
+                                src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm"
+                                alt="USDT QR Code" class="w-32 h-32 border-2 border-white rounded">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Collection & Payment ID Generation -->
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 mb-6">
+                    <h4 class="text-primary font-bold text-lg mb-4"><svg class="inline w-4 h-4 mr-1" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg> Step 1: Enter Your Email</h4>
+                    <div class="flex gap-3 mb-4">
+                        <input type="email" id="customer-email" placeholder="your@email.com"
+                            class="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800 placeholder-gray-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
+                        <button onclick="generatePaymentID()"
+                            class="bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-lg transition-colors">
+                            Generate Payment ID
+                        </button>
+                    </div>
+                    <div id="payment-id-section" class="hidden">
+                        <div class="bg-white border border-secondary/30 rounded-lg p-4">
+                            <p class="text-secondary font-bold mb-2">Your Unique Payment ID:</p>
+                            <div class="bg-gray-50 rounded p-3 font-mono text-lg text-center border-2 border-secondary">
+                                <span id="payment-id" class="text-secondary font-bold"></span>
+                            </div>
+                            <button onclick="copyPaymentID()"
+                                class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
+                                Copy Payment ID
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Instructions -->
+                <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-4 mb-6">
+                    <p class="text-yellow-300 text-sm">
+                        <strong>
+                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z">
+                                </path>
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Step 2: Send Payment
+                        </strong><br>
+                        1. Send exactly <span id="crypto-amount" class="font-bold">the amount shown</span> to one of the
+                        addresses above<br>
+                        2. <strong>IMPORTANT:</strong> Include your Payment ID in the transaction memo/note (if
+                        supported)<br>
+                        3. Email your transaction ID (TxID) + Payment ID to <a href="mailto:payments@cointrader-ai.com"
+                            class="text-yellow-100 underline font-semibold">payments@cointrader-ai.com</a><br>
+                        <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z">
+                            </path>
+                        </svg>
+                        Instant access within 15 minutes of payment confirmation!
+                    </p>
+                </div>
+
+                <!-- Payment Status Checker -->
+                <div class="bg-secondary/10 border border-secondary/30 rounded-lg p-4 mb-6">
+                    <h4 class="text-secondary font-bold mb-3">🔍 Check Payment Status</h4>
+                    <div class="flex gap-3">
+                        <input type="text" id="status-payment-id" placeholder="Enter your Payment ID"
+                            class="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20">
+                        <button onclick="checkPaymentStatus()"
+                            class="bg-secondary hover:bg-secondary-dark text-white font-bold px-4 py-2 rounded-lg transition-colors">
+                            Check Status
+                        </button>
+                    </div>
+                    <div id="payment-status-result" class="mt-3 hidden"></div>
+                </div>
+
+                <div class="text-center space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="toggleChat()"
+                            class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:scale-105 transition-transform duration-300">
+                            <svg class="inline w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                </path>
+                            </svg>
+                            <span>Live Chat Support</span>
+                        </button>
+                        <a href="mailto:support@cointrader-ai.com"
+                            class="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-black transition-all duration-300">
+                            <span><svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg> Email Support</span>
+                        </a>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-300">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+                                <span>Live Support Online</span>
+                            </div>
+                            <div>•</div>
+                            <div>Avg Response: 15 min</div>
+                            <div>•</div>
+                            <div>24/7 Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Payment Section -->
-    <div id="payment-section" class="glass-morphism rounded-3xl p-10 border-2 border-primary primary-glow max-w-4xl mx-auto" style="display: none;">
-        <div class="text-center mb-8">
-            <h3 class="text-3xl font-bold mb-4">
-                Complete Your <span id="selected-plan-name" class="gradient-text">CoinTrader AI</span> Purchase
-            </h3>
-            <div class="text-6xl font-black text-secondary mb-2">
-                $<span id="selected-price">189</span>
-            </div>
-            <div class="text-xl text-gray-400 mb-4">
-                One-Time Payment • Lifetime Access
-            </div>
-            <div class="text-lg text-gray-800 mb-4 font-medium">Crypto Payments Only: BTC, ETH, USDT</div>
-
-            <div class="bg-blue-900 border border-blue-600 rounded-lg p-4 mb-4">
-                <p class="text-blue-300 text-sm">
-                    <svg class="icon-lightning text-gold inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"></path>
-                    </svg>
-                    <strong>Current Crypto Prices:</strong><br>
-                    <span id="live-prices">Loading live rates...</span>
-                </p>
-            </div>
-        </div>
-
-        <!-- Crypto Payment Options -->
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-                <div class="mb-2">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin"
-                        class="w-12 h-12 object-contain" loading="lazy" />
-                </div>
-                <div class="font-semibold text-gray-800 mb-2">Bitcoin</div>
-                <div class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
-                    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-                </div>
-                <button onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')"
-                    class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
-                    Copy Address
-                </button>
-                <div class="mt-4 flex justify-center">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
-                        alt="Bitcoin QR Code" class="w-32 h-32 border-2 border-white rounded">
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-                <div class="mb-2">
-                    <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum"
-                        class="w-12 h-12 object-contain" loading="lazy" />
-                </div>
-                <div class="font-semibold text-gray-800 mb-2">Ethereum</div>
-                <div class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
-                    0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5
-                </div>
-                <button onclick="copyToClipboard('0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5')"
-                    class="mt-2 text-xs bg-primary text-white px-3 py-1 rounded hover:bg-primary-dark transition-colors">
-                    Copy Address
-                </button>
-                <div class="mt-4 flex justify-center">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5"
-                        alt="Ethereum QR Code" class="w-32 h-32 border-2 border-white rounded">
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-                <div class="mb-2">
-                    <img src="https://assets.coingecko.com/coins/images/325/large/Tether.png" alt="USDT"
-                        class="w-12 h-12 object-contain" loading="lazy" />
-                </div>
-                <div class="font-semibold text-gray-800 mb-2">USDT (TRC20)</div>
-                <div class="text-sm text-gray-700 font-mono break-all bg-gray-50 p-2 rounded border border-gray-200">
-                    TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm
-                </div>
-                <button onclick="copyToClipboard('TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm')"
-                    class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
-                    Copy Address
-                </button>
-                <div class="mt-4 flex justify-center">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm"
-                        alt="USDT QR Code" class="w-32 h-32 border-2 border-white rounded">
-                </div>
-            </div>
-        </div>
-
-        <!-- Email Collection & Payment ID Generation -->
-        <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 mb-6">
-            <h4 class="text-primary font-bold text-lg mb-4">
-                <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                    </path>
-                </svg> 
-                Step 1: Enter Your Email
-            </h4>
-            <div class="flex gap-3 mb-4">
-                <input type="email" id="customer-email" placeholder="your@email.com"
-                    class="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-800 placeholder-gray-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
-                <button onclick="generatePaymentID()"
-                    class="bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 rounded-lg transition-colors">
-                    Generate Payment ID
-                </button>
-            </div>
-            <div id="payment-id-section" class="hidden">
-                <div class="bg-white border border-secondary/30 rounded-lg p-4">
-                    <p class="text-secondary font-bold mb-2">Your Unique Payment ID:</p>
-                    <div class="bg-gray-50 rounded p-3 font-mono text-lg text-center border-2 border-secondary">
-                        <span id="payment-id" class="text-secondary font-bold"></span>
-                    </div>
-                    <button onclick="copyPaymentID()"
-                        class="mt-2 text-xs bg-secondary text-white px-3 py-1 rounded hover:bg-secondary-dark transition-colors">
-                        Copy Payment ID
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payment Instructions -->
-        <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-4 mb-6">
-            <p class="text-yellow-300 text-sm">
-                <strong>Step 2: Send Payment</strong><br>
-                1. Send exactly <span id="crypto-amount" class="font-bold">the amount shown</span> to one of the
-                addresses above<br>
-                2. <strong>IMPORTANT:</strong> Include your Payment ID in the transaction memo/note (if
-                supported)<br>
-                3. Email your transaction ID (TxID) + Payment ID to <a href="mailto:payments@cointrader-ai.com"
-                    class="text-yellow-100 underline font-semibold">payments@cointrader-ai.com</a><br>
-                ⚡ Instant access within 15 minutes of payment confirmation!
-            </p>
-        </div>
-
-        <!-- Payment Status Checker -->
-        <div class="bg-secondary/10 border border-secondary/30 rounded-lg p-4 mb-6">
-            <h4 class="text-secondary font-bold mb-3">🔍 Check Payment Status</h4>
-            <div class="flex gap-3">
-                <input type="text" id="status-payment-id" placeholder="Enter your Payment ID"
-                    class="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20">
-                <button onclick="checkPaymentStatus()"
-                    class="bg-secondary hover:bg-secondary-dark text-white font-bold px-4 py-2 rounded-lg transition-colors">
-                    Check Status
-                </button>
-            </div>
-            <div id="payment-status-result" class="mt-3 hidden"></div>
-        </div>
-
-        <div class="text-center space-y-4">
-            <div class="grid md:grid-cols-2 gap-4">
-                <button onclick="toggleChat()"
-                    class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:scale-105 transition-transform duration-300">
-                    <svg class="inline w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                        </path>
-                    </svg>
-                    <span>Live Chat Support</span>
-                </button>
-                <a href="mailto:support@cointrader-ai.com"
-                    class="inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
-                    <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                        </path>
-                    </svg> 
-                    Email Support
-                </a>
-            </div>
-
-            <div class="bg-gray-800 rounded-lg p-4">
-                <div class="flex items-center justify-center space-x-4 text-sm text-gray-300">
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-                        <span>Live Support Online</span>
-                    </div>
-                    <div>•</div>
-                    <div>Avg Response: 15 min</div>
-                    <div>•</div>
-                    <div>24/7 Available</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- FAQ Section -->
-    <section class="section bg-white" id="faq">
-        <div class="container max-w-4xl">
-            <div class="section-header">
-                <h2 class="section-title">
+    <section id="faq" class="py-20 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
                     <span class="gradient-text">Frequently Asked Questions</span>
                 </h2>
-                <p class="section-subtitle">Everything you need to know about CoinTrader AI</p>
+                <p class="text-xl text-gray-600">Everything you need to know about CoinTrader AI</p>
             </div>
 
             <div class="space-y-4">
-                <div class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
                     <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
                         onclick="toggleFAQ(1)">
                         <div class="flex justify-between items-center">
@@ -709,16 +1560,20 @@
                         <div class="border-l-4 border-primary pl-4">
                             <p class="mb-3">Getting started is incredibly fast:</p>
                             <ul class="space-y-2 list-disc list-inside text-gray-700">
-                                <li><strong class="text-gray-800">Purchase:</strong> Complete payment in under 2 minutes</li>
+                                <li><strong class="text-gray-800">Purchase:</strong> Complete payment in under 2 minutes
+                                </li>
                                 <li><strong class="text-gray-800">Setup:</strong> Download and install in 5 minutes</li>
-                                <li><strong class="text-gray-800">Trading:</strong> Connect your exchange API and start trading immediately</li>
+                                <li><strong class="text-gray-800">Trading:</strong> Connect your exchange API and start
+                                    trading immediately</li>
                             </ul>
-                            <p class="mt-3 text-secondary font-medium">Start trading immediately with pre-configured strategies.</p>
+                            <p class="mt-3 text-secondary font-medium">Begin trading quickly with pre-configured
+                                strategies.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
                     <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
                         onclick="toggleFAQ(2)">
                         <div class="flex justify-between items-center">
@@ -735,31 +1590,145 @@
                                 <div>• KuCoin</div>
                                 <div>• Kraken</div>
                                 <div>• Bybit</div>
-                                <div>• And 15+ more</div>
+                                <div>• Huobi</div>
+                                <div>• Gate.io</div>
+                                <div>• And 13+ more</div>
                             </div>
-                            <p class="text-secondary font-medium">More exchanges are added regularly based on user requests.</p>
+                            <p class="text-secondary font-medium">Run multiple instances simultaneously on different
+                                exchanges for maximum diversification.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
                     <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
                         onclick="toggleFAQ(3)">
                         <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-bold text-gray-800 pr-4">Is my money safe?</h3>
+                            <h3 class="text-xl font-bold text-gray-800 pr-4">Do I need trading experience?</h3>
                             <span class="text-primary text-2xl font-bold min-w-[24px]" id="faq-icon-3">+</span>
                         </div>
                     </button>
                     <div class="hidden px-6 pb-6 text-gray-700 leading-relaxed" id="faq-content-3">
                         <div class="border-l-4 border-primary pl-4">
-                            <p class="mb-3">Your funds are completely safe:</p>
-                            <ul class="space-y-2 list-disc list-inside text-gray-700">
-                                <li><strong class="text-gray-800">API-Only Access:</strong> We only connect via read-only API keys</li>
-                                <li><strong class="text-gray-800">No Withdrawal Rights:</strong> We cannot withdraw your funds</li>
-                                <li><strong class="text-gray-800">Your Exchange:</strong> Money stays on your exchange at all times</li>
-                                <li><strong class="text-gray-800">You Control:</strong> You can revoke access anytime</li>
+                            <p class="mb-3"><strong class="text-gray-800">No prior experience required.</strong> CoinTrader AI is
+                                designed for both beginners and experienced traders:</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-400 mb-3">
+                                <li>Pre-configured strategies that work out of the box</li>
+                                <li>Automatic risk management and position sizing</li>
+                                <li>Simple one-click setup process</li>
+                                <li>24/7 support and comprehensive documentation</li>
                             </ul>
-                            <p class="mt-3 text-trust-green font-medium">We never have access to your funds - only trading permissions.</p>
+                            <p class="text-secondary font-medium">Advanced users can customize settings, while beginners can start with default configurations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                    <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
+                        onclick="toggleFAQ(4)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-800 pr-4">What payment methods do you accept?</h3>
+                            <span class="text-primary text-2xl font-bold min-w-[24px]" id="faq-icon-4">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-700 leading-relaxed" id="faq-content-4">
+                        <div class="border-l-4 border-primary pl-4">
+                            <p class="mb-3">We accept cryptocurrency payments only:</p>
+                            <div class="grid grid-cols-1 gap-3 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-200">
+                                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+                                            alt="Bitcoin" class="w-6 h-6" loading="lazy" />
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-800 font-semibold">Bitcoin (BTC)</div>
+                                        <div class="text-gray-600 text-sm">Most popular choice</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-primary/10">
+                                        <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png"
+                                            alt="Ethereum" class="w-6 h-6" loading="lazy" />
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-800 font-semibold">Ethereum (ETH)</div>
+                                        <div class="text-gray-600 text-sm">Fast and reliable</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-200">
+                                        <img src="https://assets.coingecko.com/coins/images/325/large/Tether.png"
+                                            alt="USDT" class="w-6 h-6" loading="lazy" />
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-800 font-semibold">USDT (TRC20)</div>
+                                        <div class="text-gray-600 text-sm">Stable value option</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-secondary font-medium">Send the exact amount in your chosen cryptocurrency to
+                                our wallet addresses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                    <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
+                        onclick="toggleFAQ(5)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-800 pr-4">Is there a money-back guarantee?</h3>
+                            <span class="text-primary text-2xl font-bold min-w-[24px]" id="faq-icon-5">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-700 leading-relaxed" id="faq-content-5">
+                        <div class="border-l-4 border-primary pl-4">
+                            <p class="mb-3"><strong class="text-gray-800">Yes! 30-day money-back guarantee.</strong></p>
+                            <p class="mb-3">We're so confident in CoinTrader AI that we offer a full refund if you're
+                                not satisfied for any reason within 30 days.</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-400 mb-3">
+                                <li>30-day refund window</li>
+                                <li>Full 30 days to test the software</li>
+                                <li>Email us for refund processing</li>
+                                <li>Standard refund terms apply</li>
+                            </ul>
+                            <p class="text-secondary font-medium">Email: support@cointrader-ai.com for refund requests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white border-2 border-gray-200 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                    <button class="w-full text-left p-6 hover:bg-primary/5 transition-colors duration-300 rounded-xl"
+                        onclick="toggleFAQ(6)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-800 pr-4">How much money do I need to start?</h3>
+                            <span class="text-primary text-2xl font-bold min-w-[24px]" id="faq-icon-6">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-700 leading-relaxed" id="faq-content-6">
+                        <div class="border-l-4 border-primary pl-4">
+                            <p class="mb-3">You can start with as little as $100, but we recommend different amounts
+                                based on your goals:</p>
+                            <div class="space-y-3 mb-3">
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                    <div class="text-gray-800 font-semibold">Beginner: $100 - $500</div>
+                                    <div class="text-gray-600 text-sm">Perfect for learning and testing strategies</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                    <div class="text-gray-800 font-semibold">Intermediate: $500 - $2,000</div>
+                                    <div class="text-gray-600 text-sm">Good balance of growth and risk management</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                    <div class="text-gray-800 font-semibold">Advanced: $2,000+</div>
+                                    <div class="text-gray-600 text-sm">Larger positions allow for more trading opportunities
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-secondary font-medium">The bot includes risk management tools that work with any account size.</p>
                         </div>
                     </div>
                 </div>
@@ -767,164 +1736,169 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <div class="logo-icon w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" fill="url(#lightning-gradient-footer)" />
-                            <defs>
-                                <linearGradient id="lightning-gradient-footer" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#0d7a5f;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h3 class="brand-text text-2xl font-bold text-gray-800">CoinTrader AI</h3>
-                </div>
-                <p class="text-gray-400">Automated crypto trading powered by artificial intelligence</p>
-            </div>
-
-            <div class="footer-grid">
-                <div>
-                    <h4 class="text-lg font-bold text-gray-800 mb-4">Contact</h4>
-                    <div class="space-y-2 text-gray-400 text-sm">
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>support@cointrader-ai.com
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>payments@cointrader-ai.com
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                                </path>
-                            </svg>Live Chat Support
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                </path>
-                            </svg>24/7 Support Available
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="text-lg font-bold text-gray-800 mb-4">Security</h4>
-                    <div class="space-y-2 text-gray-400 text-sm">
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>SSL Encrypted Connection
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>Read-Only API Access
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>30-Day Money-Back Guarantee
-                        </p>
-                        <p>
-                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                                </path>
-                            </svg>Your Funds Stay Safe
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-6 mb-6 text-gray-400">
-                <a href="mailto:support@cointrader-ai.com" class="hover:text-blue-600 transition-colors font-medium">
-                    <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                        </path>
-                    </svg>
-                    Email Support
-                </a>
-                <a href="#buy-now" class="hover:text-blue-600 transition-colors font-medium">
-                    <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z">
-                        </path>
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Refund Policy
-                </a>
-            </div>
-
-            <div class="text-center mb-8">
-                <p class="text-gray-600 mb-4">Questions? We're here to help!</p>
-                <div class="flex flex-wrap justify-center gap-6 text-sm">
-                    <a href="mailto:support@cointrader-ai.com" class="text-gray-700 hover:text-blue-600 transition-colors">
-                        <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        General Support
-                    </a>
-                    <a href="mailto:payments@cointrader-ai.com" class="text-gray-700 hover:text-blue-600 transition-colors">
-                        <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z">
-                            </path>
+    <!-- Simple Security Notice -->
+    <section class="py-12 px-4 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Your Money Stays Safe</h3>
+            <p class="text-gray-600 mb-8">We use trading-only API access - we can execute trades but cannot withdraw your funds</p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Payment Help
-                    </a>
-                    <a href="#buy-now" class="text-gray-700 hover:text-blue-600 transition-colors">
-                        <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Trading-Only Access</h4>
+                    <p class="text-sm text-gray-600">We can execute trades but cannot withdraw your funds</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">30-Day Guarantee</h4>
+                    <p class="text-sm text-gray-600">Not happy? Get your money back, no questions asked</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 11V7a4 4 0 00-8 0v4M8 11v6h8v-6M8 11h8">
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                             </path>
                         </svg>
-                        Get Started
-                    </a>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">24/7 Support</h4>
+                    <p class="text-sm text-gray-600">Real humans ready to help you succeed</p>
                 </div>
             </div>
+        </div>
 
-            <div class="footer-bottom">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4 bg-gray-800 border-t border-gray-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Logo and Brand -->
+            <div class="flex items-center justify-center gap-3 mb-6">
+                <div class="logo-icon w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white ring-opacity-20">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="5" r="3" fill="currentColor" />
+                        <circle cx="6" cy="12" r="3" fill="currentColor" />
+                        <circle cx="18" cy="12" r="3" fill="currentColor" />
+                        <circle cx="12" cy="19" r="3" fill="currentColor" />
+                        <path d="m10.5 6.5 -2 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        <path d="m13.5 6.5 2 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        <path d="m8 14 2 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        <path d="m16 14 -2 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="text-2xl font-bold text-white drop-shadow-lg">
+                    CoinTrader AI
+                </div>
+            </div>
+            
+            <!-- Tagline -->
+            <p class="text-gray-400 text-lg mb-8">
+                Automated crypto trading using algorithmic strategies
+            </p>
+            
+            <!-- Contact Links -->
+            <div class="flex flex-wrap justify-center gap-8 mb-8">
+                <a href="mailto:support@cointrader-ai.com" 
+                   class="flex items-center gap-2 text-gray-400 hover:text-accent transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    support@cointrader-ai.com
+                </a>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-400">24/7 Support Available</span>
+            </div>
+
+
+            <div class="text-gray-400 text-sm text-center">
                 © 2024 CoinTrader AI. All trading involves risk. Not financial advice. Trade responsibly.
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="/js/analytics.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/ui.js"></script>
-    <script src="/js/payment.js"></script>
-    <script src="/js/calculator.js"></script>
+
+    <!-- JavaScript Files -->
+    <script src="js/analytics.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/calculator.js"></script>
+
+    <!-- Fixed Support Button (HTML fallback) -->
+    <button onclick="toggleChat()" id="support-btn-fallback"
+        class="chat-support-btn bg-primary border border-primary-dark text-white font-medium px-4 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 hover:bg-primary-dark">
+        <svg class="icon-chat" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+            </path>
+        </svg>
+        <span class="hidden md:inline">Need Help?</span>
+    </button>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget-fallback"
+        class="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 hidden z-[9999] flex flex-col">
+        <div class="bg-primary p-4 rounded-t-2xl flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+                <h3 class="text-white font-bold">Get Help & Support</h3>
+            </div>
+            <button onclick="toggleChat()" class="text-white hover:text-gray-200 text-xl">&times;</button>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto" id="chat-messages-fallback">
+            <div class="bg-gray-100 rounded-lg p-3 mb-4">
+                <p class="text-gray-700 text-sm">
+                    <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 8h10m0 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0v10a2 2 0 01-2 2H9a2 2 0 01-2-2V8m10 0H7">
+                        </path>
+                    </svg>
+                    Hi! I'm here to help you get started with CoinTrader AI. What would you like to know?
+                </p>
+            </div>
+            <div class="space-y-2 mb-4">
+                <button onclick="sendQuickReply('How does the bot work?')"
+                    class="w-full text-left bg-gray-100 hover:bg-gray-200 rounded-lg p-3 text-sm text-gray-700 transition-colors border border-gray-200">
+                    How do I get started with trading?
+                </button>
+                <button onclick="sendQuickReply('What exchanges are supported?')"
+                    class="w-full text-left bg-gray-100 hover:bg-gray-200 rounded-lg p-3 text-sm text-gray-700 transition-colors border border-gray-200">
+                    Which exchanges work with this?
+                </button>
+                <button onclick="sendQuickReply('Is there a money-back guarantee?')"
+                    class="w-full text-left bg-gray-100 hover:bg-gray-200 rounded-lg p-3 text-sm text-gray-700 transition-colors border border-gray-200">
+                    Is my money safe?
+                </button>
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-200">
+            <div class="flex space-x-2">
+                <input type="text" id="chat-input-fallback" placeholder="Type your message..."
+                    class="flex-1 bg-white text-gray-800 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
+                <button onclick="sendMessage()"
+                    class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

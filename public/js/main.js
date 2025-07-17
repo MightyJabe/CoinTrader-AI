@@ -4,7 +4,22 @@
 
 // Global application state
 window.CoinTraderApp = {
-    cryptoPrices: { bitcoin: 43000, ethereum: 2650, tether: 1.00 },
+    cryptoPrices: { 
+        bitcoin: 43000, 
+        ethereum: 2650, 
+        tether: 1.00,
+        bnb: 300,
+        litecoin: 70,
+        tron: 0.08
+    },
+    cryptoChanges: {
+        bitcoin: 0,
+        ethereum: 0,
+        tether: 0,
+        bnb: 0,
+        litecoin: 0,
+        tron: 0
+    },
     tradingStats: {
         totalTrades: 0,
         winRate: 0,
@@ -148,20 +163,111 @@ function startCountdown() {
 }
 
 /**
- * Load cryptocurrency prices
+ * Load cryptocurrency prices from CoinGecko API
  */
 async function loadCryptoPrices() {
     try {
-        const response = await fetch('/api/payment/rates');
+        // Show loading state
+        const livePricesEl = document.getElementById('live-prices');
+        if (livePricesEl) {
+            livePricesEl.innerHTML = `
+                <span class="flex items-center">
+                    <svg class="animate-spin h-4 w-4 text-accent mr-2" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading live rates...
+                </span>
+            `;
+        }
+        
+        // Fetch prices from CoinGecko API (free tier)
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,litecoin,tron&vs_currencies=usd&include_24hr_change=true');
+        
         if (response.ok) {
-            const rates = await response.json();
-            CoinTraderApp.cryptoPrices.bitcoin = rates.BTC;
-            CoinTraderApp.cryptoPrices.ethereum = rates.ETH;
+            const data = await response.json();
+            
+            // Update prices
+            CoinTraderApp.cryptoPrices.bitcoin = data.bitcoin?.usd || 43000;
+            CoinTraderApp.cryptoPrices.ethereum = data.ethereum?.usd || 2650;
+            CoinTraderApp.cryptoPrices.tether = data.tether?.usd || 1.00;
+            CoinTraderApp.cryptoPrices.bnb = data.binancecoin?.usd || 300;
+            CoinTraderApp.cryptoPrices.litecoin = data.litecoin?.usd || 70;
+            CoinTraderApp.cryptoPrices.tron = data.tron?.usd || 0.08;
+            
+            // Store 24hr changes for display
+            CoinTraderApp.cryptoChanges = {
+                bitcoin: data.bitcoin?.usd_24h_change || 0,
+                ethereum: data.ethereum?.usd_24h_change || 0,
+                tether: data.tether?.usd_24h_change || 0,
+                bnb: data.binancecoin?.usd_24h_change || 0,
+                litecoin: data.litecoin?.usd_24h_change || 0,
+                tron: data.tron?.usd_24h_change || 0
+            };
+            
+            console.log('✅ Crypto prices loaded successfully:', CoinTraderApp.cryptoPrices);
+        } else {
+            throw new Error('Failed to fetch prices');
         }
     } catch (error) {
-        console.log('Using fallback crypto prices');
+        console.warn('⚠️  Failed to load live crypto prices, using fallback values:', error);
+        
+        // Show error state briefly
+        const livePricesEl = document.getElementById('live-prices');
+        if (livePricesEl) {
+            livePricesEl.innerHTML = `
+                <span class="text-yellow-600">
+                    ⚠️ Using cached prices (live prices unavailable)
+                </span>
+            `;
+        }
     }
+    
+    // Update displays
     updatePriceDisplay();
+    
+    // Set up periodic updates (every 2 minutes to respect rate limits)
+    setInterval(() => {
+        loadCryptoPricesQuietly();
+    }, 120000);
+}
+
+/**
+ * Load crypto prices quietly (no UI updates during refresh)
+ */
+async function loadCryptoPricesQuietly() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,litecoin,tron&vs_currencies=usd&include_24hr_change=true');
+        
+        if (response.ok) {
+            const data = await response.json();
+            
+            // Update prices
+            CoinTraderApp.cryptoPrices.bitcoin = data.bitcoin?.usd || CoinTraderApp.cryptoPrices.bitcoin;
+            CoinTraderApp.cryptoPrices.ethereum = data.ethereum?.usd || CoinTraderApp.cryptoPrices.ethereum;
+            CoinTraderApp.cryptoPrices.tether = data.tether?.usd || CoinTraderApp.cryptoPrices.tether;
+            CoinTraderApp.cryptoPrices.bnb = data.binancecoin?.usd || CoinTraderApp.cryptoPrices.bnb;
+            CoinTraderApp.cryptoPrices.litecoin = data.litecoin?.usd || CoinTraderApp.cryptoPrices.litecoin;
+            CoinTraderApp.cryptoPrices.tron = data.tron?.usd || CoinTraderApp.cryptoPrices.tron;
+            
+            // Update changes
+            CoinTraderApp.cryptoChanges = {
+                bitcoin: data.bitcoin?.usd_24h_change || 0,
+                ethereum: data.ethereum?.usd_24h_change || 0,
+                tether: data.tether?.usd_24h_change || 0,
+                bnb: data.binancecoin?.usd_24h_change || 0,
+                litecoin: data.litecoin?.usd_24h_change || 0,
+                tron: data.tron?.usd_24h_change || 0
+            };
+            
+            // Update displays
+            updatePriceDisplay();
+            
+            console.log('🔄 Crypto prices updated:', new Date().toLocaleTimeString());
+        }
+    } catch (error) {
+        console.warn('🔄 Price update failed (using cached):', error.message);
+    }
 }
 
 /**
@@ -171,24 +277,74 @@ function updatePriceDisplay() {
     if (!CoinTraderApp.selectedPlan) return;
     
     const price = CoinTraderApp.selectedPlan.price;
-    const btcAmount = (price / CoinTraderApp.cryptoPrices.bitcoin).toFixed(6);
-    const ethAmount = (price / CoinTraderApp.cryptoPrices.ethereum).toFixed(4);
-    const usdtAmount = (price / CoinTraderApp.cryptoPrices.tether).toFixed(2);
+    const prices = CoinTraderApp.cryptoPrices;
+    const changes = CoinTraderApp.cryptoChanges || {};
     
+    // Calculate amounts for each currency
+    const amounts = {
+        BTC: (price / prices.bitcoin).toFixed(6),
+        ETH: (price / prices.ethereum).toFixed(4),
+        USDT: (price / prices.tether).toFixed(2),
+        BNB: (price / prices.bnb).toFixed(3),
+        LTC: (price / prices.litecoin).toFixed(3),
+        TRX: (price / prices.tron).toFixed(0)
+    };
+    
+    // Helper function to get change color and symbol
+    const getChangeDisplay = (change) => {
+        if (change > 0) {
+            return `<span class="text-green-600">+${change.toFixed(1)}%</span>`;
+        } else if (change < 0) {
+            return `<span class="text-red-600">${change.toFixed(1)}%</span>`;
+        } else {
+            return `<span class="text-gray-500">0.0%</span>`;
+        }
+    };
+    
+    // Update live prices display
     const livePricesEl = document.getElementById('live-prices');
     if (livePricesEl) {
         livePricesEl.innerHTML = `
-            BTC: ${btcAmount} BTC ($${CoinTraderApp.cryptoPrices.bitcoin.toLocaleString()}) • 
-            ETH: ${ethAmount} ETH ($${CoinTraderApp.cryptoPrices.ethereum.toLocaleString()}) • 
-            USDT: ${usdtAmount} USDT
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">BTC:</span>
+                    <span>$${prices.bitcoin.toLocaleString()} ${getChangeDisplay(changes.bitcoin)}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">ETH:</span>
+                    <span>$${prices.ethereum.toLocaleString()} ${getChangeDisplay(changes.ethereum)}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">USDT:</span>
+                    <span>$${prices.tether.toFixed(3)} ${getChangeDisplay(changes.tether)}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">BNB:</span>
+                    <span>$${prices.bnb.toLocaleString()} ${getChangeDisplay(changes.bnb)}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">LTC:</span>
+                    <span>$${prices.litecoin.toLocaleString()} ${getChangeDisplay(changes.litecoin)}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium">TRX:</span>
+                    <span>$${prices.tron.toFixed(3)} ${getChangeDisplay(changes.tron)}</span>
+                </div>
+            </div>
         `;
     }
     
+    // Update crypto amount display (legacy)
     const cryptoAmountEl = document.getElementById('crypto-amount');
     if (cryptoAmountEl) {
         cryptoAmountEl.innerHTML = `
-            ${btcAmount} BTC or ${ethAmount} ETH or ${usdtAmount} USDT
+            ${amounts.BTC} BTC or ${amounts.ETH} ETH or ${amounts.USDT} USDT
         `;
+    }
+    
+    // Update payment amount if a currency is selected
+    if (window.selectedCurrency && window.updateCryptoAmount) {
+        window.updateCryptoAmount(window.selectedCurrency);
     }
 }
 

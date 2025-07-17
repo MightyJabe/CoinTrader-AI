@@ -8,6 +8,18 @@ const web3 = new Web3(process.env.ETHEREUM_RPC_URL);
 
 const CRYPTO_PRICES_API = 'https://api.coingecko.com/api/v3/simple/price';
 
+// Wallet addresses configuration
+const WALLET_ADDRESSES = {
+  BTC: process.env.WALLET_ADDRESS_BTC || 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+  ETH: process.env.WALLET_ADDRESS_ETH || '0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5',
+  USDT_TRC20: process.env.WALLET_ADDRESS_USDT_TRC20 || 'TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm',
+  USDT_ERC20: process.env.WALLET_ADDRESS_USDT_ERC20 || '0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5',
+  USDT_BEP20: process.env.WALLET_ADDRESS_USDT_BEP20 || '0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5',
+  BNB: process.env.WALLET_ADDRESS_BNB || '0x742d35Cc6634C0532925a3b8D45B3E88E03b59A5',
+  LTC: process.env.WALLET_ADDRESS_LTC || 'LYmpJZm1WrP5FSnxwkV2TTo5SkAF4Eha31',
+  TRX: process.env.WALLET_ADDRESS_TRX || 'TMWLhJd8E5c8QqUMXkqYFq7gWxGMEjvbZm'
+};
+
 // Product configuration
 const PRODUCT = {
   name: 'CoinTrader AI Complete',
@@ -24,6 +36,19 @@ const PRODUCT = {
     'Lifetime Updates'
   ]
 };
+
+// Get wallet addresses endpoint
+router.get('/wallet-addresses', (req, res) => {
+  try {
+    res.json({
+      success: true,
+      addresses: WALLET_ADDRESSES
+    });
+  } catch (error) {
+    console.error('Error fetching wallet addresses:', error);
+    res.status(500).json({ error: 'Failed to fetch wallet addresses' });
+  }
+});
 
 router.post('/create-payment', async (req, res) => {
   try {
@@ -48,7 +73,7 @@ router.post('/create-payment', async (req, res) => {
 
     const paymentId = `payment_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     
-    const qrCodeData = `${crypto}:${walletAddress}?amount=${amount}`;
+    const qrCodeData = walletAddress;
     const qrCode = await QRCode.toDataURL(qrCodeData);
 
     res.json({
